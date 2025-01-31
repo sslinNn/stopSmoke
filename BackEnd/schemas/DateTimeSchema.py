@@ -11,4 +11,3 @@ class DateTimeSchema(BaseModel):
     @field_validator("created_at", "updated_at")
     def default_datetime(cls, value) -> datetime:
         return value or datetime.now()
-
