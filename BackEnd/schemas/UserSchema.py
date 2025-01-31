@@ -44,5 +44,10 @@ class SUserRegister(CoreSchema):
         return v
 
 
+class SUserLogin(SUser):
+    password: str = Field(..., description="Password")
+
+
+
 # TODO: UserUpdate for profile update
 # TODO: UserPasswordUpdate for user password update
