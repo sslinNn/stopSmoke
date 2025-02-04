@@ -10,9 +10,8 @@ from dotenv import load_dotenv
 # Импорт моделей (убедитесь, что все модели импортированы)
 from backend.models.User import Base  # Пример импорта одной модели
 
-# Загружаем переменные окружения
-load_dotenv()
-db_url = os.getenv("DATABASE_URL")
+from backend.config import get_db_url
+db_url = get_db_url()
 
 # Конфигурация Alembic
 config = context.config
