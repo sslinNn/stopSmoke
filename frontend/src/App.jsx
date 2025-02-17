@@ -1,26 +1,21 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Provider } from 'react-redux';
-
-import store from "./redux/store";
 import Header from "./components/Header";
-import LoginForm from "./components/LoginForm";
-import Home from "./pages/Home";
+import LoginForm from "./pages/LoginForm";
 // import RegisterForm from "./pages/RegisterForm";
+import Home from "./pages/Home";
 
 function App() {
+  if (status === "loading") return <p>Загрузка...</p>;
+
   return (
-    <Provider store={store}>
-      <div className="App">
-        <Router>
-          <Header />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<LoginForm />} />
-            <Route path="/register" element={"<RegisterForm />"} />
-          </Routes>
-        </Router>
-      </div>
-    </Provider>
+    <Router>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<LoginForm />} />
+        {/* <Route path="/register" element={<RegisterForm />} /> */}
+      </Routes>
+    </Router>
   );
 }
 

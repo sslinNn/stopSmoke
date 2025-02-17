@@ -1,10 +1,12 @@
-from fastapi import APIRouter, status, Depends, Response
+from fastapi import APIRouter, status, Depends, Response, security, HTTPException
+from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from starlette.responses import JSONResponse
-
-from backend.api.auth.repository import create_user, get_user_access_token
+from backend.api.auth.utils import create_user
 from backend.database.database import get_db
+from backend.models.User import User
 from backend.schemas.UserSchema import SUserRegister, SUserLogin
+from backend.utils.JWTUtils import create_access_token
 
 router = APIRouter()
 
@@ -12,10 +14,10 @@ router = APIRouter()
 @router.post("/register")
 async def register_user(user_data: SUserRegister, db: AsyncSession = Depends(get_db)):
     try:
-        await create_user(db, user_data)
+        user = await create_user(db, user_data)
         return JSONResponse(
             status_code=status.HTTP_201_CREATED,
-            content={"message": "User created successfully"},
+            content={"message": "User created successfully", "user_id": user.id},
         )
     except Exception as e:
         return JSONResponse(
@@ -25,21 +27,23 @@ async def register_user(user_data: SUserRegister, db: AsyncSession = Depends(get
 
 
 @router.post("/login")
-async def signin_user(
+async def login(
     response: Response, user_data: SUserLogin, db: AsyncSession = Depends(get_db)
 ):
-    try:
-        access_token = await get_user_access_token(db, user_data)
-        response.set_cookie(
-            key="access_token",
-            value=access_token,
-            httponly=True,
-            secure=True,  # Для dev: secure=False, если HTTP
-            samesite="None",
-            path="/"
-        )
-        response.status_code = status.HTTP_202_ACCEPTED
-        return {"message": "User logged successfully"}
-    except Exception as e:
-        response.status_code = status.HTTP_400_BAD_REQUEST
-        return {"message": str(e)}
+    user = await db.execute(select(User).where(User.email == user_data.email))
+    user = user.scalar_one_or_none()
+
+    if not user or not user_data.password != user.password:
+        raise HTTPException(status_code=400, detail="Incorrect email or password")
+
+    data = {"sub": user.id}
+    token = create_access_token(data)
+    response.set_cookie(
+        key="auth_token",
+        value=token,
+        httponly=True,
+        secure=False,
+        samesite="lax",
+        max_age=3600 * 24 * 7,
+    )
+    return {"message": "Logged in successfully"}

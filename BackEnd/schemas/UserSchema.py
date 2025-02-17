@@ -1,53 +1,52 @@
-import re
 from datetime import datetime
-from typing import Optional
+import re
 
-from pydantic import EmailStr, Field, field_validator
+from pydantic import fields, EmailStr, Field
+from pydantic.v1 import validator
 
 from backend.schemas.CoreSchema import CoreSchema
 
 
-class SUser(CoreSchema):
-    username: str = Field(
+class SUserBase(CoreSchema):
+    email: EmailStr = Field(
         ...,
-        min_length=3,
-        max_length=20,
-        description="Can use only latin symbols, numbers, and underscores",
+        description="Email address",
+        pattern=r"^[^а-яА-ЯёЁ]*$",
     )
 
-    @field_validator("username")
-    def validate_username(cls, v):
-        if not re.match(r"^[a-zA-Z0-9_]+$", v):
-            raise ValueError(
-                "Username can only contain latin letters, numbers, and underscores"
-            )
-        return v
 
-
-class SUserRegister(CoreSchema):
-    email: EmailStr = Field(..., description="Email address")
+class SUserRegister(SUserBase):
     password: str = Field(
         ...,
-        min_length=5,
-        max_length=50,
-        description="Password from 5 to 50 symbols must have 1 letter and 1 number",
+        min_length=6,
+        max_length=26,
+        description="Password",
+        pattern=r"^[^а-яА-ЯёЁ]*$",
     )
-    password_confirmation: str
-    created_at: Optional[datetime] = datetime.utcnow()
+    password_repeat: str = Field()
 
-    @field_validator("password")
-    def validate_password(cls, v):
-        if not any(char.isalpha() for char in v):  # Проверка на наличие буквы
-            raise ValueError("Password must contain at least one letter")
-        if not any(char.isdigit() for char in v):  # Проверка на наличие цифры
-            raise ValueError("Password must contain at least one number")
+    @validator("password_repeat")
+    def passwords_match(cls, v, values, **kwargs):
+        if "password" in values and v != values["password"]:
+            raise ValueError("Пароли не совпадают.")
         return v
 
 
-class SUserLogin(SUser):
-    password: str = Field(..., description="Password")
+class SUserLogin(SUserBase):
+    password: str = Field(
+        ...,
+        min_length=6,
+        max_length=26,
+        description="User password",
+        pattern=r"^[^а-яА-ЯёЁ]*$",
+    )
 
 
+class SUserOut(CoreSchema):
+    id: int = Field(..., description="User unique ID")
+    email: EmailStr = Field(..., description="User email")
+    username: str = Field(..., description="Username")
+    created_at: datetime = Field(..., description="Datetime creation of user")
 
-# TODO: UserUpdate for profile update
-# TODO: UserPasswordUpdate for user password update
+    class Config:
+        from_attributes = True
