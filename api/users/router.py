@@ -1,9 +1,8 @@
-from fastapi import APIRouter, status, Depends, Response, security, HTTPException
-from backend.api.users.utils import get_current_user
-from backend.models.User import User
+from fastapi import APIRouter, Depends
+from api.users.users_utils import get_current_user
+from models.User import User
 
 router = APIRouter()
-
 
 
 @router.get("/me")
@@ -16,6 +15,3 @@ async def get_me(current_user: User = Depends(get_current_user)):
         "email_confirmed": current_user.email_confirmed,
     }
     return user
-
-
-

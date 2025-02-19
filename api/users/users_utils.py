@@ -4,9 +4,9 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from starlette.requests import Request
 
-from backend.database.database import get_db
-from backend.models.User import User
-from backend.utils.JWTUtils import decode_access_token
+from database.database import get_db
+from models.User import User
+from utils.JWTUtils import decode_access_token
 
 
 

@@ -1,10 +1,10 @@
-from fastapi import APIRouter, status, Depends, Response, security, HTTPException
+from fastapi import APIRouter, status, Depends, Response, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from starlette.requests import Request
 from starlette.responses import JSONResponse, RedirectResponse
-from backend.api.auth.utils import create_user, login_user
-from backend.database.database import get_db
-from backend.schemas.UserSchema import SUserRegister, SUserLogin
+from api.auth.auth_utils import create_user, login_user
+from database.database import get_db
+from schemas.UserSchema import SUserRegister, SUserLogin
 
 router = APIRouter()
 

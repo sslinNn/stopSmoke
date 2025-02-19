@@ -1,10 +1,9 @@
 from datetime import datetime
-import re
 
-from pydantic import fields, EmailStr, Field
+from pydantic import EmailStr, Field
 from pydantic.v1 import validator
 
-from backend.schemas.CoreSchema import CoreSchema
+from schemas.CoreSchema import CoreSchema
 
 
 class SUserBase(CoreSchema):

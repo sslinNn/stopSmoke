@@ -1,7 +1,7 @@
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timedelta
 from typing import Optional
 from jose import jwt, JWTError
-from backend.config import get_auth_data
+from config import get_auth_data
 
 
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -> str:

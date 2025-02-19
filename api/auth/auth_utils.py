@@ -1,12 +1,12 @@
 from sqlalchemy.ext.asyncio import AsyncSession
-from backend.models.User import User
-from backend.schemas.UserSchema import SUserRegister, SUserLogin
+from models.User import User
+from schemas.UserSchema import SUserRegister, SUserLogin
 from sqlalchemy.future import select
 from fastapi import HTTPException
 
-from backend.utils.EmailUtils import create_username_by_email
-from backend.utils.JWTUtils import create_access_token
-from backend.utils.PasswordUtils import get_password_hash, password_compare
+from utils.EmailUtils import create_username_by_email
+from utils.JWTUtils import create_access_token
+from utils.PasswordUtils import get_password_hash, password_compare
 
 
 # @router.post("/register")
@@ -46,5 +46,3 @@ async def login_user(db: AsyncSession, user_data: SUserLogin):
 
     token = create_access_token({"sub": str(user.id)})
     return token
-
-
