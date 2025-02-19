@@ -1,5 +1,4 @@
 from fastapi import APIRouter, status, Depends, Response, security, HTTPException
-
 from backend.api.users.utils import get_current_user
 from backend.models.User import User
 
@@ -18,6 +17,5 @@ async def get_me(current_user: User = Depends(get_current_user)):
     }
     return user
 
-@router.post("/logout")
-async def logout(current_user: User = Depends(get_current_user)):
+
 

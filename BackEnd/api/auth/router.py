@@ -1,6 +1,7 @@
 from fastapi import APIRouter, status, Depends, Response, security, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
-from starlette.responses import JSONResponse
+from starlette.requests import Request
+from starlette.responses import JSONResponse, RedirectResponse
 from backend.api.auth.utils import create_user, login_user
 from backend.database.database import get_db
 from backend.schemas.UserSchema import SUserRegister, SUserLogin
@@ -45,3 +46,11 @@ async def login(
             status_code=e.status_code,
             content={"message": e.detail},
         )
+
+
+@router.get("/logout")
+async def logout(request: Request) -> RedirectResponse:
+    """Выход пользователя: удаляет access_token"""
+    response = Response(status_code=302)
+    response.delete_cookie("access_token")
+    return response

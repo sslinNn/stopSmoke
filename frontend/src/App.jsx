@@ -5,6 +5,7 @@ import RegisterForm from "./components/RegisterForm";
 import Home from "./pages/Home";
 // import Profile from "./pages/Profile";
 import { useSelector } from 'react-redux';
+import LogoutButton from "./components/LogoutButton.jsx";
 
 const UserIn = () => {
   const { error, user, status } = useSelector((state) => state.auth);
@@ -20,12 +21,14 @@ function App() {
 
   return (
     <Router>
-      {/*<Header />*/}
-      {user && <p>Привет, {user.name}!</p>}
+      <Header />
+      <LogoutButton/>
+      {user && <p>Привет, {user.username}!</p>}
       <Routes>
         {user ? (
           <>
             <Route path="/" element={<Home />} />
+
             {/*<Route path="/profile" element={<Profile />} />*/}
           </>
         ) : (
