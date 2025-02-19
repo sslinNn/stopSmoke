@@ -1,19 +1,39 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
-import LoginForm from "./pages/LoginForm";
-// import RegisterForm from "./pages/RegisterForm";
+import LoginForm from './components/LoginForm.jsx';
+import RegisterForm from "./components/RegisterForm";
 import Home from "./pages/Home";
+// import Profile from "./pages/Profile";
+import { useSelector } from 'react-redux';
+
+const UserIn = () => {
+  const { error, user, status } = useSelector((state) => state.auth);
+
+  if (status === "loading") return <p>Загрузка...</p>;
+  if (error) return <p>Error: {error}</p>;
+
+  return user;
+};
 
 function App() {
-  if (status === "loading") return <p>Загрузка...</p>;
+  const user = UserIn();
 
   return (
     <Router>
-      <Header />
+      {/*<Header />*/}
+      {user && <p>Привет, {user.name}!</p>}
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<LoginForm />} />
-        {/* <Route path="/register" element={<RegisterForm />} /> */}
+        {user ? (
+          <>
+            <Route path="/" element={<Home />} />
+            {/*<Route path="/profile" element={<Profile />} />*/}
+          </>
+        ) : (
+          <>
+            <Route path="/login" element={<LoginForm />} />
+            <Route path="/register" element={<RegisterForm />} />
+          </>
+        )}
       </Routes>
     </Router>
   );

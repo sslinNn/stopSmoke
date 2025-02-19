@@ -1,49 +1,47 @@
 from fastapi import APIRouter, status, Depends, Response, security, HTTPException
-from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from starlette.responses import JSONResponse
-from backend.api.auth.utils import create_user
+from backend.api.auth.utils import create_user, login_user
 from backend.database.database import get_db
-from backend.models.User import User
 from backend.schemas.UserSchema import SUserRegister, SUserLogin
-from backend.utils.JWTUtils import create_access_token
 
 router = APIRouter()
 
 
-@router.post("/register")
+@router.post("/register", status_code=status.HTTP_201_CREATED)
 async def register_user(user_data: SUserRegister, db: AsyncSession = Depends(get_db)):
     try:
         user = await create_user(db, user_data)
         return JSONResponse(
-            status_code=status.HTTP_201_CREATED,
             content={"message": "User created successfully", "user_id": user.id},
         )
-    except Exception as e:
+    except HTTPException as e:
         return JSONResponse(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            content={"message": str(e)},
+            status_code=e.status_code,
+            content={"message": e.detail},
         )
 
 
-@router.post("/login")
+@router.post("/login", status_code=status.HTTP_200_OK)
 async def login(
     response: Response, user_data: SUserLogin, db: AsyncSession = Depends(get_db)
 ):
-    user = await db.execute(select(User).where(User.email == user_data.email))
-    user = user.scalar_one_or_none()
+    try:
+        token = await login_user(db, user_data)
 
-    if not user or not user_data.password != user.password:
-        raise HTTPException(status_code=400, detail="Incorrect email or password")
+        response.set_cookie(
+            key="access_token",
+            value=token,
+            httponly=True,
+            secure=False,
+            samesite="lax",
+            max_age=3600 * 24 * 7,
+        )
 
-    data = {"sub": user.id}
-    token = create_access_token(data)
-    response.set_cookie(
-        key="auth_token",
-        value=token,
-        httponly=True,
-        secure=False,
-        samesite="lax",
-        max_age=3600 * 24 * 7,
-    )
-    return {"message": "Logged in successfully"}
+        return {"message": "logged in successfully"}
+
+    except HTTPException as e:
+        return JSONResponse(
+            status_code=e.status_code,
+            content={"message": e.detail},
+        )

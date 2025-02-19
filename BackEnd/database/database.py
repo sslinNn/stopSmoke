@@ -1,7 +1,6 @@
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncSession
 from backend import config
 
-
 db_url = config.get_db_url()
 if not db_url:
     raise ValueError("DATABASE_URL is not set in the .env file")
