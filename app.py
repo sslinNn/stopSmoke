@@ -1,5 +1,7 @@
+from cryptography.hazmat.backends.openssl import backend
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from starlette.middleware.authentication import AuthenticationMiddleware
 
 app = FastAPI(title="Party Finder")
 
@@ -9,6 +11,7 @@ origins = [
     "http://127.0.0.1:5173",  # React на 127.0.0.1
 ]
 
+# app.add_middleware(AuthenticationMiddleware, backend=)
 # Настройка CORS
 app.add_middleware(
     CORSMiddleware,

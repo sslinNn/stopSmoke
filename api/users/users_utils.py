@@ -2,6 +2,7 @@ from fastapi import Depends, HTTPException
 from jose import JWTError
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.sql.functions import current_user
 from starlette.requests import Request
 
 from database.database import get_db
@@ -17,21 +18,27 @@ async def get_current_user(
 ) -> User:
     try:
         token = request.cookies.get('access_token')
-        print(f"Received token: {token}")
         payload = decode_access_token(token)
-        user_id = payload.get("sub")
-        print(payload, user_id)
 
+        user_id = payload.get("sub")
         if not user_id:
             raise HTTPException(status_code=401, detail="Неверный токен")
 
         stmt = select(User).where(User.id == int(user_id))
         result = await db.execute(stmt)
         user_in_db = result.scalar_one_or_none()
-
         if not user_in_db:
             raise HTTPException(status_code=404, detail="Пользователь не найден")
 
         return user_in_db
     except JWTError:
         raise HTTPException(status_code=401, detail="Неверный токен")
+
+
+async def update_user(user_to_update: User, db: AsyncSession):
+    """Сохраняет обновленного пользователя в БД."""
+    print(user_to_update)
+    db.add(user_to_update)  # Не забудь добавить объект перед коммитом
+    await db.commit()
+    await db.refresh(user_to_update)
+    return user_to_update
