@@ -12,7 +12,6 @@ from utils.PasswordUtils import get_password_hash, password_compare
 
 logger: Logger = logging.getLogger(__name__)
 
-# @router.post("/register")
 async def create_user(db: AsyncSession, user: SUserRegister):
     try:
         logger.info(f"Попытка создания пользователя с email: {user.email}")
@@ -30,11 +29,11 @@ async def create_user(db: AsyncSession, user: SUserRegister):
                 status_code=400, detail="User with this email already exists"
             )
 
-        # Если email уникален, создаём нового пользователя
         current_user = User(
             email=user.email,
             password=get_password_hash(user.password),
             username=create_username_by_email(user.email),
+            email_confirmed=False
         )
         db.add(current_user)
         await db.commit()
