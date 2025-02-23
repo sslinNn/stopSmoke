@@ -1,14 +1,13 @@
 import logging
 from logging import Logger
 
-from fastapi import HTTPException
+
 from sqlalchemy.ext.asyncio import AsyncSession
-from starlette import status
+from fastapi import status, HTTPException
 
 from models.User import User
-from schemas.user_schema import SUserCreate
-from services.utils import user_existing_by_email
-from utils.email_utils import create_username_by_email
+from schemas.auth_schema import SAuthRegisterServer
+from services.utils import user_existing_by_email, create_username_by_email
 from utils.jwt_utils import create_access_token
 from utils.password_utils import password_compare, get_password_hash
 
@@ -19,7 +18,7 @@ class AuthService:
     def __init__(self, db: AsyncSession):
         self.db = db
 
-    async def create_user(self, user: SUserCreate):
+    async def create_user(self, user: SAuthRegisterServer) -> User:
         try:
             logger.info(f"Попытка создания пользователя с email: {user.email}")
             if user.password != user.password_repeat:
@@ -46,16 +45,16 @@ class AuthService:
             await self.db.commit()
             await self.db.refresh(new_user)
 
-            logger.info(f"Пользователь успешно создан: {user.username}")
+            logger.info(f"Пользователь успешно создан!")
             return new_user
         except Exception as e:
             logger.exception(e)
             raise HTTPException(  # TODO: ЗАМЕНИ НА СВОЙ EXCEPTION
-                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                status_code=status.HTTP_400_BAD_REQUEST,
                 detail=f"Something went wrong: {e}",
             )
 
-    async def login_user(self, email: str, password: str):
+    async def login_user(self, email: str, password: str) -> str:
         user = await user_existing_by_email(email, self.db)
 
         if not user:

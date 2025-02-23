@@ -14,13 +14,12 @@ class UserService:
     def __init__(self, db: AsyncSession):
         self.db = db
 
-    async def get_user_data(self, user_id: int):
+    async def get_user_data(self, user_id: int) -> User:
         try:
             user = await user_existing_by_id(user_id=user_id, db=self.db)
             if not user:
                 logger.warning(f"Пользователь не найден: {user_id}")
                 raise UserNotFoundException(f"Пользователь с ID {user_id} не найден")
-
             return user
 
         except Exception as e:

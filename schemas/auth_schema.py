@@ -1,17 +1,18 @@
 from pydantic import Field, EmailStr, validator
 from schemas.core_schema import CoreSchema
 
-class AuthBase(CoreSchema):
-    email: EmailStr = Field(..., description="Email пользователя")
 
-class AuthRegister(AuthBase):
+class SAuthBase(CoreSchema):
+    email: EmailStr = Field(..., description="Email адрес пользователя")
     password: str = Field(
         ...,
         min_length=6,
         max_length=26,
+        pattern=r"^[^а-яА-ЯёЁ]*$",
         description="Пароль пользователя",
-        pattern=r"^[^а-яА-ЯёЁ]*$"
     )
+
+class SAuthRegisterClient(SAuthBase):
     password_repeat: str = Field(..., description="Повторение пароля")
 
     @validator("password_repeat")
@@ -20,10 +21,6 @@ class AuthRegister(AuthBase):
             raise ValueError("Пароли не совпадают")
         return v
 
-class AuthLogin(AuthBase):
-    password: str = Field(
-        ...,
-        min_length=6,
-        max_length=26,
-        description="Пароль пользователя"
-    )
+
+class SAuthRegisterServer(SAuthRegisterClient):
+    username: str = Field(..., pattern=r"^[^а-яА-ЯёЁ]*$", description="Username пользователя")

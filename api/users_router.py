@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from starlette.requests import Request
 from app import logger
-from schemas.user_schema import SUserResponse, SUserProfileResponse, SUserProfile
+from schemas.user_schema import SUserProfile
 from database.database import get_db
 from services.user_service import UserService
 from utils.jwt_utils import get_id_from_access_token
@@ -12,7 +12,7 @@ router = APIRouter()
 
 @router.get(
     "/me",
-    response_model=SUserProfileResponse,
+    response_model=SUserProfile,
     description="Получение данных текущего пользователя",
 )
 async def get_me(request: Request, db: AsyncSession = Depends(get_db)):
@@ -27,7 +27,7 @@ async def get_me(request: Request, db: AsyncSession = Depends(get_db)):
 
 @router.patch(
     "/update",
-    response_model=SUserResponse,
+    response_model=SUserProfile,
     description="Обновление данных пользователя",
 )
 async def update_user(

@@ -4,8 +4,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from starlette.responses import JSONResponse, Response
 from database.database import get_db
 from exceptions.user_exceptions import UserAlreadyExistsException
-from schemas.auth_schema import AuthRegister, AuthLogin
-from schemas.user_schema import SUserCreate
+from schemas.auth_schema import SAuthBase, SAuthRegisterServer, SAuthRegisterClient
 from services.auth_service import AuthService
 
 router = APIRouter()
@@ -18,7 +17,7 @@ logger = logging.getLogger(__name__)
     status_code=status.HTTP_201_CREATED,
     description="Регистрация нового пользователя",
 )
-async def register_user(user_data: SUserCreate, db: AsyncSession = Depends(get_db)):
+async def register_user(user_data: SAuthRegisterClient, db: AsyncSession = Depends(get_db)):
     logger.info(f"Запрос на регистрацию пользователя: {user_data.email}")
     auth_service = AuthService(db)
     try:
@@ -27,12 +26,12 @@ async def register_user(user_data: SUserCreate, db: AsyncSession = Depends(get_d
     except UserAlreadyExistsException as UAE:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(UAE))
     except Exception as e:
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL, detail=str(e))
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
 
 
 @router.post("/login", description="Вход пользователя")
 async def login(
-    response: Response, login_data: AuthLogin, db: AsyncSession = Depends(get_db)
+    response: Response, login_data: SAuthBase, db: AsyncSession = Depends(get_db)
 ):
     logger.info(f"Попытка входа пользователя: {login_data.email}")
     auth_service = AuthService(db)
