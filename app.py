@@ -1,7 +1,7 @@
+import logging
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from logging.config import dictConfig
-import logging
 from core.logging_config import LOGGING_CONFIG
 from middleware.error_handler import error_handler
 from core.container import Container
@@ -35,8 +35,8 @@ app.add_middleware(
 )
 
 # Роутеры
-from api.auth.router import router as auth_router
-from api.users.router import router as users_router
+from api.auth_router import router as auth_router
+from api.users_router import router as users_router
 
 app.include_router(auth_router, prefix="/api/auth", tags=["Authentication"])
 app.include_router(users_router, prefix="/api/users", tags=["Users"])

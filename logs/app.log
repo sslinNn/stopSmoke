@@ -1668,3 +1668,1310 @@ fastapi.exceptions.ResponseValidationError: 1 validation errors:
 2025-02-22 23:31:28 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/users/me
 2025-02-22 23:31:28 - app - INFO - Запрос данных пользователя: 62
 2025-02-22 23:31:28 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-22 23:59:11 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/auth/logout
+2025-02-22 23:59:11 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-22 23:59:20 - middleware.error_handler - INFO - Входящий запрос: POST http://localhost:8000/api/auth/login
+2025-02-22 23:59:20 - api.auth.router - INFO - Попытка входа пользователя: new1@mail.ru
+2025-02-22 23:59:21 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-22 23:59:21 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/users/me
+2025-02-22 23:59:21 - app - INFO - Запрос данных пользователя: 62
+2025-02-22 23:59:21 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-22 23:59:26 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/auth/logout
+2025-02-22 23:59:26 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-22 23:59:32 - middleware.error_handler - INFO - Входящий запрос: POST http://localhost:8000/api/auth/login
+2025-02-22 23:59:32 - api.auth.router - INFO - Попытка входа пользователя: morison1991@mail.ru
+2025-02-22 23:59:32 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-22 23:59:32 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/users/me
+2025-02-22 23:59:32 - app - INFO - Запрос данных пользователя: 37
+2025-02-22 23:59:32 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 01:37:51 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/auth/logout
+2025-02-23 01:37:51 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 01:37:55 - middleware.error_handler - INFO - Входящий запрос: POST http://localhost:8000/api/auth/login
+2025-02-23 01:37:55 - api.auth.router - INFO - Попытка входа пользователя: morison1991@mail.ru
+2025-02-23 01:37:55 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 01:37:55 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/users/me
+2025-02-23 01:37:55 - app - INFO - Запрос данных пользователя: 37
+2025-02-23 01:37:55 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 01:38:01 - middleware.error_handler - INFO - Входящий запрос: PATCH http://localhost:8000/api/users/update
+2025-02-23 01:38:01 - app - INFO - Запрос на обновление пользователя: 37
+2025-02-23 01:38:01 - services.user_service - INFO - Попытка обновления пользователя с ID: 37
+2025-02-23 01:38:01 - services.user_service - INFO - Пользователь успешно обновлен: 37
+2025-02-23 01:38:01 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 01:38:01 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/users/me
+2025-02-23 01:38:01 - app - INFO - Запрос данных пользователя: 37
+2025-02-23 01:38:01 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 01:38:02 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/auth/logout
+2025-02-23 01:38:02 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 01:38:06 - middleware.error_handler - INFO - Входящий запрос: POST http://localhost:8000/api/auth/login
+2025-02-23 01:38:06 - api.auth.router - INFO - Попытка входа пользователя: morison1991@mail.ru
+2025-02-23 01:38:06 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 01:38:06 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/users/me
+2025-02-23 01:38:06 - app - INFO - Запрос данных пользователя: 37
+2025-02-23 01:38:06 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 01:38:16 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/auth/logout
+2025-02-23 01:38:16 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 10:09:06 - middleware.error_handler - INFO - Входящий запрос: POST http://localhost:8000/api/auth/login
+2025-02-23 10:09:06 - api.auth.router - INFO - Попытка входа пользователя: morison1991@mail.ru
+2025-02-23 10:09:06 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 10:09:06 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/users/me
+2025-02-23 10:09:06 - app - INFO - Запрос данных пользователя: 37
+2025-02-23 10:09:06 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 15:30:43 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/auth/logout
+2025-02-23 15:30:43 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 19:10:25 - app - INFO - Приложение запущено
+2025-02-23 19:10:29 - middleware.error_handler - INFO - Входящий запрос: POST http://localhost:8000/api/auth/login
+2025-02-23 19:10:29 - api.auth.router - INFO - Попытка входа пользователя: morison1991@mail.ru
+2025-02-23 19:10:29 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 19:10:29 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/users/me
+2025-02-23 19:10:29 - app - INFO - Запрос данных пользователя: 37
+2025-02-23 19:10:29 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 19:10:35 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/auth/logout
+2025-02-23 19:10:35 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 19:10:38 - middleware.error_handler - INFO - Входящий запрос: POST http://localhost:8000/api/auth/login
+2025-02-23 19:10:38 - api.auth.router - INFO - Попытка входа пользователя: morison1991@mail.ru
+2025-02-23 19:10:38 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 19:10:38 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/users/me
+2025-02-23 19:10:38 - app - INFO - Запрос данных пользователя: 37
+2025-02-23 19:10:38 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 19:10:45 - middleware.error_handler - INFO - Входящий запрос: PATCH http://localhost:8000/api/users/update
+2025-02-23 19:10:45 - app - INFO - Запрос на обновление пользователя: 37
+2025-02-23 19:10:45 - services.user_service - INFO - Попытка обновления пользователя с ID: 37
+2025-02-23 19:10:45 - services.user_service - INFO - Пользователь успешно обновлен: 37
+2025-02-23 19:10:45 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 19:10:45 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/users/me
+2025-02-23 19:10:45 - app - INFO - Запрос данных пользователя: 37
+2025-02-23 19:10:45 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 19:10:46 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/auth/logout
+2025-02-23 19:10:46 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 19:10:50 - middleware.error_handler - INFO - Входящий запрос: POST http://localhost:8000/api/auth/login
+2025-02-23 19:10:50 - api.auth.router - INFO - Попытка входа пользователя: morison1991@mail.ru
+2025-02-23 19:10:50 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 19:10:50 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/users/me
+2025-02-23 19:10:50 - app - INFO - Запрос данных пользователя: 37
+2025-02-23 19:10:50 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 19:10:54 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/auth/logout
+2025-02-23 19:10:54 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 19:14:28 - middleware.error_handler - INFO - Входящий запрос: POST http://localhost:8000/api/auth/login
+2025-02-23 19:14:28 - api.auth.router - INFO - Попытка входа пользователя: morison1991@mail.ru
+2025-02-23 19:14:28 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 19:14:28 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/users/me
+2025-02-23 19:14:28 - app - INFO - Запрос данных пользователя: 37
+2025-02-23 19:14:28 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 19:14:34 - middleware.error_handler - INFO - Входящий запрос: PATCH http://localhost:8000/api/users/update
+2025-02-23 19:14:34 - app - INFO - Запрос на обновление пользователя: 37
+2025-02-23 19:14:34 - services.user_service - INFO - Попытка обновления пользователя с ID: 37
+2025-02-23 19:14:34 - services.user_service - INFO - Пользователь успешно обновлен: 37
+2025-02-23 19:14:34 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 19:14:34 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/users/me
+2025-02-23 19:14:34 - app - INFO - Запрос данных пользователя: 37
+2025-02-23 19:14:34 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 19:14:36 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/auth/logout
+2025-02-23 19:14:36 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 19:15:23 - app - INFO - Приложение остановлено
+2025-02-23 19:15:25 - app - INFO - Приложение запущено
+2025-02-23 19:15:25 - app - INFO - Приложение остановлено
+2025-02-23 19:15:27 - app - INFO - Приложение запущено
+2025-02-23 19:31:19 - middleware.error_handler - INFO - Входящий запрос: POST http://localhost:8000/api/auth/login
+2025-02-23 19:31:19 - api.auth.router - INFO - Попытка входа пользователя: morison1991@mail.ru
+2025-02-23 19:31:19 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 19:31:19 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/users/me
+2025-02-23 19:31:19 - app - INFO - Запрос данных пользователя: 37
+2025-02-23 19:31:19 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 20:54:46 - app - INFO - Приложение запущено
+2025-02-23 21:04:19 - app - INFO - Приложение остановлено
+2025-02-23 21:04:22 - app - INFO - Приложение запущено
+2025-02-23 21:04:27 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/auth/logout
+2025-02-23 21:04:27 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 21:04:33 - middleware.error_handler - INFO - Входящий запрос: POST http://localhost:8000/api/auth/login
+2025-02-23 21:04:33 - api.auth.router - INFO - Попытка входа пользователя: morison1991@mail.ru
+2025-02-23 21:04:34 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 21:04:34 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/users/me
+2025-02-23 21:04:34 - app - INFO - Запрос данных пользователя: <coroutine object get_id_from_access_token at 0x000002264EE589E0>
+2025-02-23 21:04:34 - middleware.error_handler - ERROR - Необработанное исключение: 1 validation errors:
+  {'type': 'model_attributes_type', 'loc': ('response',), 'msg': 'Input should be a valid dictionary or object to extract fields from', 'input': <coroutine object UserService.get_user_data at 0x000002264EE487B0>}
+Traceback (most recent call last):
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\anyio\streams\memory.py", line 111, in receive
+    return self.receive_nowait()
+           ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\anyio\streams\memory.py", line 106, in receive_nowait
+    raise WouldBlock
+anyio.WouldBlock
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\anyio\streams\memory.py", line 124, in receive
+    return receiver.item
+           ^^^^^^^^^^^^^
+AttributeError: 'MemoryObjectItemReceiver' object has no attribute 'item'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\middleware\base.py", line 157, in call_next
+    message = await recv_stream.receive()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\anyio\streams\memory.py", line 126, in receive
+    raise EndOfStream
+anyio.EndOfStream
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\sslinnn\Desktop\PartyFinder\middleware\error_handler.py", line 12, in error_handler
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\middleware\base.py", line 163, in call_next
+    raise app_exc
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\middleware\base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\fastapi\routing.py", line 327, in app
+    content = await serialize_response(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<9 lines>...
+    )
+    ^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\fastapi\routing.py", line 176, in serialize_response
+    raise ResponseValidationError(
+        errors=_normalize_errors(errors), body=response_content
+    )
+fastapi.exceptions.ResponseValidationError: 1 validation errors:
+  {'type': 'model_attributes_type', 'loc': ('response',), 'msg': 'Input should be a valid dictionary or object to extract fields from', 'input': <coroutine object UserService.get_user_data at 0x000002264EE487B0>}
+
+2025-02-23 21:07:00 - app - INFO - Приложение запущено
+2025-02-23 21:07:04 - middleware.error_handler - INFO - Входящий запрос: POST http://localhost:8000/api/auth/login
+2025-02-23 21:07:04 - api.auth.router - INFO - Попытка входа пользователя: morison1991@mail.ru
+2025-02-23 21:07:04 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 21:07:04 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/users/me
+2025-02-23 21:07:04 - app - INFO - Запрос данных пользователя: 37
+2025-02-23 21:07:04 - middleware.error_handler - ERROR - Необработанное исключение: 1 validation errors:
+  {'type': 'model_attributes_type', 'loc': ('response',), 'msg': 'Input should be a valid dictionary or object to extract fields from', 'input': <coroutine object UserService.get_user_data at 0x00000234E05C3EF0>}
+Traceback (most recent call last):
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\anyio\streams\memory.py", line 111, in receive
+    return self.receive_nowait()
+           ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\anyio\streams\memory.py", line 106, in receive_nowait
+    raise WouldBlock
+anyio.WouldBlock
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\anyio\streams\memory.py", line 124, in receive
+    return receiver.item
+           ^^^^^^^^^^^^^
+AttributeError: 'MemoryObjectItemReceiver' object has no attribute 'item'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\middleware\base.py", line 157, in call_next
+    message = await recv_stream.receive()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\anyio\streams\memory.py", line 126, in receive
+    raise EndOfStream
+anyio.EndOfStream
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\sslinnn\Desktop\PartyFinder\middleware\error_handler.py", line 12, in error_handler
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\middleware\base.py", line 163, in call_next
+    raise app_exc
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\middleware\base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\fastapi\routing.py", line 327, in app
+    content = await serialize_response(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<9 lines>...
+    )
+    ^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\fastapi\routing.py", line 176, in serialize_response
+    raise ResponseValidationError(
+        errors=_normalize_errors(errors), body=response_content
+    )
+fastapi.exceptions.ResponseValidationError: 1 validation errors:
+  {'type': 'model_attributes_type', 'loc': ('response',), 'msg': 'Input should be a valid dictionary or object to extract fields from', 'input': <coroutine object UserService.get_user_data at 0x00000234E05C3EF0>}
+
+2025-02-23 21:07:56 - app - INFO - Приложение запущено
+2025-02-23 21:07:57 - middleware.error_handler - INFO - Входящий запрос: POST http://localhost:8000/api/auth/login
+2025-02-23 21:07:57 - api.auth.router - INFO - Попытка входа пользователя: morison1991@mail.ru
+2025-02-23 21:07:57 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 21:07:57 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/users/me
+2025-02-23 21:07:57 - app - INFO - Запрос данных пользователя: 37
+2025-02-23 21:07:57 - middleware.error_handler - ERROR - Необработанное исключение: 1 validation errors:
+  {'type': 'model_attributes_type', 'loc': ('response',), 'msg': 'Input should be a valid dictionary or object to extract fields from', 'input': <coroutine object UserService.get_user_data at 0x000001CE23A2BDE0>}
+Traceback (most recent call last):
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\anyio\streams\memory.py", line 111, in receive
+    return self.receive_nowait()
+           ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\anyio\streams\memory.py", line 106, in receive_nowait
+    raise WouldBlock
+anyio.WouldBlock
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\anyio\streams\memory.py", line 124, in receive
+    return receiver.item
+           ^^^^^^^^^^^^^
+AttributeError: 'MemoryObjectItemReceiver' object has no attribute 'item'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\middleware\base.py", line 157, in call_next
+    message = await recv_stream.receive()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\anyio\streams\memory.py", line 126, in receive
+    raise EndOfStream
+anyio.EndOfStream
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\sslinnn\Desktop\PartyFinder\middleware\error_handler.py", line 12, in error_handler
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\middleware\base.py", line 163, in call_next
+    raise app_exc
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\middleware\base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\fastapi\routing.py", line 327, in app
+    content = await serialize_response(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<9 lines>...
+    )
+    ^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\fastapi\routing.py", line 176, in serialize_response
+    raise ResponseValidationError(
+        errors=_normalize_errors(errors), body=response_content
+    )
+fastapi.exceptions.ResponseValidationError: 1 validation errors:
+  {'type': 'model_attributes_type', 'loc': ('response',), 'msg': 'Input should be a valid dictionary or object to extract fields from', 'input': <coroutine object UserService.get_user_data at 0x000001CE23A2BDE0>}
+
+2025-02-23 21:08:15 - app - INFO - Приложение остановлено
+2025-02-23 21:08:17 - app - INFO - Приложение запущено
+2025-02-23 21:08:20 - middleware.error_handler - INFO - Входящий запрос: POST http://localhost:8000/api/auth/login
+2025-02-23 21:08:20 - api.auth.router - INFO - Попытка входа пользователя: morison1991@mail.ru
+2025-02-23 21:08:20 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 21:08:20 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/users/me
+2025-02-23 21:08:20 - app - INFO - Запрос данных пользователя: 37
+2025-02-23 21:08:20 - middleware.error_handler - ERROR - Необработанное исключение: 1 validation errors:
+  {'type': 'model_attributes_type', 'loc': ('response',), 'msg': 'Input should be a valid dictionary or object to extract fields from', 'input': <coroutine object UserService.get_user_data at 0x0000028B1F5B7DE0>}
+Traceback (most recent call last):
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\anyio\streams\memory.py", line 111, in receive
+    return self.receive_nowait()
+           ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\anyio\streams\memory.py", line 106, in receive_nowait
+    raise WouldBlock
+anyio.WouldBlock
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\anyio\streams\memory.py", line 124, in receive
+    return receiver.item
+           ^^^^^^^^^^^^^
+AttributeError: 'MemoryObjectItemReceiver' object has no attribute 'item'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\middleware\base.py", line 157, in call_next
+    message = await recv_stream.receive()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\anyio\streams\memory.py", line 126, in receive
+    raise EndOfStream
+anyio.EndOfStream
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\sslinnn\Desktop\PartyFinder\middleware\error_handler.py", line 12, in error_handler
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\middleware\base.py", line 163, in call_next
+    raise app_exc
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\middleware\base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\fastapi\routing.py", line 327, in app
+    content = await serialize_response(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<9 lines>...
+    )
+    ^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\fastapi\routing.py", line 176, in serialize_response
+    raise ResponseValidationError(
+        errors=_normalize_errors(errors), body=response_content
+    )
+fastapi.exceptions.ResponseValidationError: 1 validation errors:
+  {'type': 'model_attributes_type', 'loc': ('response',), 'msg': 'Input should be a valid dictionary or object to extract fields from', 'input': <coroutine object UserService.get_user_data at 0x0000028B1F5B7DE0>}
+
+2025-02-23 21:10:05 - app - INFO - Приложение запущено
+2025-02-23 21:10:07 - middleware.error_handler - INFO - Входящий запрос: POST http://localhost:8000/api/auth/login
+2025-02-23 21:10:07 - api.auth.router - INFO - Попытка входа пользователя: morison1991@mail.ru
+2025-02-23 21:10:07 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 21:10:07 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/users/me
+2025-02-23 21:10:07 - app - INFO - Запрос данных пользователя: 37
+2025-02-23 21:10:07 - middleware.error_handler - ERROR - Необработанное исключение: 1 validation errors:
+  {'type': 'model_attributes_type', 'loc': ('response',), 'msg': 'Input should be a valid dictionary or object to extract fields from', 'input': <coroutine object UserService.get_user_data at 0x0000029680D87EF0>}
+Traceback (most recent call last):
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\anyio\streams\memory.py", line 111, in receive
+    return self.receive_nowait()
+           ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\anyio\streams\memory.py", line 106, in receive_nowait
+    raise WouldBlock
+anyio.WouldBlock
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\anyio\streams\memory.py", line 124, in receive
+    return receiver.item
+           ^^^^^^^^^^^^^
+AttributeError: 'MemoryObjectItemReceiver' object has no attribute 'item'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\middleware\base.py", line 157, in call_next
+    message = await recv_stream.receive()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\anyio\streams\memory.py", line 126, in receive
+    raise EndOfStream
+anyio.EndOfStream
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\sslinnn\Desktop\PartyFinder\middleware\error_handler.py", line 12, in error_handler
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\middleware\base.py", line 163, in call_next
+    raise app_exc
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\middleware\base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\fastapi\routing.py", line 327, in app
+    content = await serialize_response(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<9 lines>...
+    )
+    ^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\fastapi\routing.py", line 176, in serialize_response
+    raise ResponseValidationError(
+        errors=_normalize_errors(errors), body=response_content
+    )
+fastapi.exceptions.ResponseValidationError: 1 validation errors:
+  {'type': 'model_attributes_type', 'loc': ('response',), 'msg': 'Input should be a valid dictionary or object to extract fields from', 'input': <coroutine object UserService.get_user_data at 0x0000029680D87EF0>}
+
+2025-02-23 21:10:55 - app - INFO - Приложение запущено
+2025-02-23 21:11:04 - app - INFO - Приложение запущено
+2025-02-23 21:11:05 - middleware.error_handler - INFO - Входящий запрос: POST http://localhost:8000/api/auth/login
+2025-02-23 21:11:05 - api.auth.router - INFO - Попытка входа пользователя: morison1991@mail.ru
+2025-02-23 21:11:05 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 21:11:05 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/users/me
+2025-02-23 21:11:05 - app - INFO - Запрос данных пользователя: 37
+2025-02-23 21:11:05 - middleware.error_handler - ERROR - Необработанное исключение: 'coroutine' object has no attribute '__dict__'
+Traceback (most recent call last):
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\anyio\streams\memory.py", line 111, in receive
+    return self.receive_nowait()
+           ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\anyio\streams\memory.py", line 106, in receive_nowait
+    raise WouldBlock
+anyio.WouldBlock
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\anyio\streams\memory.py", line 124, in receive
+    return receiver.item
+           ^^^^^^^^^^^^^
+AttributeError: 'MemoryObjectItemReceiver' object has no attribute 'item'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\middleware\base.py", line 157, in call_next
+    message = await recv_stream.receive()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\anyio\streams\memory.py", line 126, in receive
+    raise EndOfStream
+anyio.EndOfStream
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\sslinnn\Desktop\PartyFinder\middleware\error_handler.py", line 12, in error_handler
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\middleware\base.py", line 163, in call_next
+    raise app_exc
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\middleware\base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\fastapi\routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\api\users\router.py", line 35, in get_me
+    logger.info(f"данные пользователя: {current_user_data.__dict__}")
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'coroutine' object has no attribute '__dict__'. Did you mean: '__dir__'?
+2025-02-23 21:13:19 - app - INFO - Приложение запущено
+2025-02-23 21:13:23 - middleware.error_handler - INFO - Входящий запрос: POST http://localhost:8000/api/auth/login
+2025-02-23 21:13:23 - api.auth.router - INFO - Попытка входа пользователя: morison1991@mail.ru
+2025-02-23 21:13:23 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 21:13:23 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/users/me
+2025-02-23 21:13:23 - app - INFO - Запрос данных пользователя: 37
+2025-02-23 21:13:23 - app - INFO - данные пользователя: <coroutine object UserService.get_user_data at 0x0000023C1D61BDE0>
+2025-02-23 21:13:23 - middleware.error_handler - ERROR - Необработанное исключение: 1 validation errors:
+  {'type': 'model_attributes_type', 'loc': ('response',), 'msg': 'Input should be a valid dictionary or object to extract fields from', 'input': <coroutine object UserService.get_user_data at 0x0000023C1D61BDE0>}
+Traceback (most recent call last):
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\anyio\streams\memory.py", line 111, in receive
+    return self.receive_nowait()
+           ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\anyio\streams\memory.py", line 106, in receive_nowait
+    raise WouldBlock
+anyio.WouldBlock
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\anyio\streams\memory.py", line 124, in receive
+    return receiver.item
+           ^^^^^^^^^^^^^
+AttributeError: 'MemoryObjectItemReceiver' object has no attribute 'item'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\middleware\base.py", line 157, in call_next
+    message = await recv_stream.receive()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\anyio\streams\memory.py", line 126, in receive
+    raise EndOfStream
+anyio.EndOfStream
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\sslinnn\Desktop\PartyFinder\middleware\error_handler.py", line 12, in error_handler
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\middleware\base.py", line 163, in call_next
+    raise app_exc
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\middleware\base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\fastapi\routing.py", line 327, in app
+    content = await serialize_response(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<9 lines>...
+    )
+    ^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\fastapi\routing.py", line 176, in serialize_response
+    raise ResponseValidationError(
+        errors=_normalize_errors(errors), body=response_content
+    )
+fastapi.exceptions.ResponseValidationError: 1 validation errors:
+  {'type': 'model_attributes_type', 'loc': ('response',), 'msg': 'Input should be a valid dictionary or object to extract fields from', 'input': <coroutine object UserService.get_user_data at 0x0000023C1D61BDE0>}
+
+2025-02-23 21:16:37 - app - INFO - Приложение запущено
+2025-02-23 21:16:38 - middleware.error_handler - INFO - Входящий запрос: POST http://localhost:8000/api/auth/login
+2025-02-23 21:16:38 - api.auth.router - INFO - Попытка входа пользователя: morison1991@mail.ru
+2025-02-23 21:16:39 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 21:16:39 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/users/me
+2025-02-23 21:16:39 - app - INFO - Запрос данных пользователя: 37
+2025-02-23 21:16:39 - middleware.error_handler - ERROR - Необработанное исключение: 'coroutine' object has no attribute 'email'
+Traceback (most recent call last):
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\anyio\streams\memory.py", line 111, in receive
+    return self.receive_nowait()
+           ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\anyio\streams\memory.py", line 106, in receive_nowait
+    raise WouldBlock
+anyio.WouldBlock
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\anyio\streams\memory.py", line 124, in receive
+    return receiver.item
+           ^^^^^^^^^^^^^
+AttributeError: 'MemoryObjectItemReceiver' object has no attribute 'item'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\middleware\base.py", line 157, in call_next
+    message = await recv_stream.receive()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\anyio\streams\memory.py", line 126, in receive
+    raise EndOfStream
+anyio.EndOfStream
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\sslinnn\Desktop\PartyFinder\middleware\error_handler.py", line 12, in error_handler
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\middleware\base.py", line 163, in call_next
+    raise app_exc
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\middleware\base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\fastapi\routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\api\users\router.py", line 36, in get_me
+    current_user_data = current_user_data.email
+                        ^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'coroutine' object has no attribute 'email'
+2025-02-23 21:17:28 - app - INFO - Приложение запущено
+2025-02-23 21:17:30 - middleware.error_handler - INFO - Входящий запрос: POST http://localhost:8000/api/auth/login
+2025-02-23 21:17:30 - api.auth.router - INFO - Попытка входа пользователя: morison1991@mail.ru
+2025-02-23 21:17:31 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 21:17:31 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/users/me
+2025-02-23 21:17:31 - app - INFO - Запрос данных пользователя: 37
+2025-02-23 21:17:31 - app - INFO - данные пользователя: <models.User.User object at 0x000002417ABA87D0>
+2025-02-23 21:17:31 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 21:19:49 - middleware.error_handler - INFO - Входящий запрос: PATCH http://localhost:8000/api/users/update
+2025-02-23 21:19:49 - app - INFO - Запрос на обновление пользователя: <coroutine object get_id_from_access_token at 0x000002417A851700>
+2025-02-23 21:19:49 - services.user_service - INFO - Попытка обновления пользователя с ID: <coroutine object get_id_from_access_token at 0x000002417A851700>
+2025-02-23 21:19:49 - services.user_service - ERROR - Ошибка при обновлении пользователя <coroutine object get_id_from_access_token at 0x000002417A851700>: (sqlalchemy.dialects.postgresql.asyncpg.Error) <class 'asyncpg.exceptions.DataError'>: invalid input for query argument $1: <coroutine object get_id_from_access_tok... ('coroutine' object cannot be interpreted as an integer)
+[SQL: SELECT users.id, users.username, users.password, users.email, users.email_confirmed, users.is_active, users.is_superuser, users.first_name, users.last_name, users.created_at, users.updated_at 
+FROM users 
+WHERE users.id = $1::INTEGER]
+[parameters: (<coroutine object get_id_from_access_token at 0x000002417A851700>,)]
+(Background on this error at: https://sqlalche.me/e/20/dbapi)
+2025-02-23 21:19:49 - middleware.error_handler - ERROR - Необработанное исключение: (sqlalchemy.dialects.postgresql.asyncpg.Error) <class 'asyncpg.exceptions.DataError'>: invalid input for query argument $1: <coroutine object get_id_from_access_tok... ('coroutine' object cannot be interpreted as an integer)
+[SQL: SELECT users.id, users.username, users.password, users.email, users.email_confirmed, users.is_active, users.is_superuser, users.first_name, users.last_name, users.created_at, users.updated_at 
+FROM users 
+WHERE users.id = $1::INTEGER]
+[parameters: (<coroutine object get_id_from_access_token at 0x000002417A851700>,)]
+(Background on this error at: https://sqlalche.me/e/20/dbapi)
+Traceback (most recent call last):
+  File "asyncpg\\protocol\\prepared_stmt.pyx", line 175, in asyncpg.protocol.protocol.PreparedStatementState._encode_bind_msg
+  File "asyncpg\\protocol\\codecs/base.pyx", line 227, in asyncpg.protocol.protocol.Codec.encode
+  File "asyncpg\\protocol\\codecs/base.pyx", line 129, in asyncpg.protocol.protocol.Codec.encode_scalar
+  File "asyncpg\\pgproto\\./codecs/int.pyx", line 54, in asyncpg.pgproto.pgproto.int4_encode
+TypeError: 'coroutine' object cannot be interpreted as an integer
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py", line 545, in _prepare_and_execute
+    self._rows = deque(await prepared_stmt.fetch(*parameters))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\asyncpg\prepared_stmt.py", line 176, in fetch
+    data = await self.__bind_execute(args, 0, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\asyncpg\prepared_stmt.py", line 267, in __bind_execute
+    data, status, _ = await self.__do_execute(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^
+        lambda protocol: protocol.bind_execute(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            self._state, args, '', limit, True, timeout))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\asyncpg\prepared_stmt.py", line 256, in __do_execute
+    return await executor(protocol)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "asyncpg\\protocol\\protocol.pyx", line 185, in bind_execute
+  File "asyncpg\\protocol\\prepared_stmt.pyx", line 204, in asyncpg.protocol.protocol.PreparedStatementState._encode_bind_msg
+asyncpg.exceptions.DataError: invalid input for query argument $1: <coroutine object get_id_from_access_tok... ('coroutine' object cannot be interpreted as an integer)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 942, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py", line 580, in execute
+    self._adapt_connection.await_(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self._prepare_and_execute(operation, parameters)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py", line 558, in _prepare_and_execute
+    self._handle_exception(error)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py", line 508, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py", line 792, in _handle_exception
+    raise translated_error from error
+sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.Error: <class 'asyncpg.exceptions.DataError'>: invalid input for query argument $1: <coroutine object get_id_from_access_tok... ('coroutine' object cannot be interpreted as an integer)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\sslinnn\Desktop\PartyFinder\middleware\error_handler.py", line 12, in error_handler
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\middleware\base.py", line 163, in call_next
+    raise app_exc
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\middleware\base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\fastapi\routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\api\users\router.py", line 54, in update_user
+    return updated_user
+                   ^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\services\user_service.py", line 39, in update_user
+    logger.warning(f"Пользователь не найден: {user_id}")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\ext\asyncio\session.py", line 463, in execute
+    result = await greenlet_spawn(
+             ^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 201, in greenlet_spawn
+    result = context.throw(*sys.exc_info())
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2365, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2251, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<4 lines>...
+        conn,
+        ^^^^^
+    )
+    ^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\orm\context.py", line 305, in orm_execute_statement
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 942, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py", line 580, in execute
+    self._adapt_connection.await_(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self._prepare_and_execute(operation, parameters)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py", line 558, in _prepare_and_execute
+    self._handle_exception(error)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py", line 508, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py", line 792, in _handle_exception
+    raise translated_error from error
+sqlalchemy.exc.DBAPIError: (sqlalchemy.dialects.postgresql.asyncpg.Error) <class 'asyncpg.exceptions.DataError'>: invalid input for query argument $1: <coroutine object get_id_from_access_tok... ('coroutine' object cannot be interpreted as an integer)
+[SQL: SELECT users.id, users.username, users.password, users.email, users.email_confirmed, users.is_active, users.is_superuser, users.first_name, users.last_name, users.created_at, users.updated_at 
+FROM users 
+WHERE users.id = $1::INTEGER]
+[parameters: (<coroutine object get_id_from_access_token at 0x000002417A851700>,)]
+(Background on this error at: https://sqlalche.me/e/20/dbapi)
+2025-02-23 21:19:49 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/users/me
+2025-02-23 21:19:49 - app - INFO - Запрос данных пользователя: 37
+2025-02-23 21:19:49 - app - INFO - данные пользователя: <models.User.User object at 0x000002417ABA8B90>
+2025-02-23 21:19:49 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 21:20:15 - middleware.error_handler - INFO - Входящий запрос: PATCH http://localhost:8000/api/users/update
+2025-02-23 21:20:15 - app - INFO - Запрос на обновление пользователя: <coroutine object get_id_from_access_token at 0x000002417AC31000>
+2025-02-23 21:20:15 - services.user_service - INFO - Попытка обновления пользователя с ID: <coroutine object get_id_from_access_token at 0x000002417AC31000>
+2025-02-23 21:20:15 - services.user_service - ERROR - Ошибка при обновлении пользователя <coroutine object get_id_from_access_token at 0x000002417AC31000>: (sqlalchemy.dialects.postgresql.asyncpg.Error) <class 'asyncpg.exceptions.DataError'>: invalid input for query argument $1: <coroutine object get_id_from_access_tok... ('coroutine' object cannot be interpreted as an integer)
+[SQL: SELECT users.id, users.username, users.password, users.email, users.email_confirmed, users.is_active, users.is_superuser, users.first_name, users.last_name, users.created_at, users.updated_at 
+FROM users 
+WHERE users.id = $1::INTEGER]
+[parameters: (<coroutine object get_id_from_access_token at 0x000002417AC31000>,)]
+(Background on this error at: https://sqlalche.me/e/20/dbapi)
+2025-02-23 21:20:15 - middleware.error_handler - ERROR - Необработанное исключение: (sqlalchemy.dialects.postgresql.asyncpg.Error) <class 'asyncpg.exceptions.DataError'>: invalid input for query argument $1: <coroutine object get_id_from_access_tok... ('coroutine' object cannot be interpreted as an integer)
+[SQL: SELECT users.id, users.username, users.password, users.email, users.email_confirmed, users.is_active, users.is_superuser, users.first_name, users.last_name, users.created_at, users.updated_at 
+FROM users 
+WHERE users.id = $1::INTEGER]
+[parameters: (<coroutine object get_id_from_access_token at 0x000002417AC31000>,)]
+(Background on this error at: https://sqlalche.me/e/20/dbapi)
+Traceback (most recent call last):
+  File "asyncpg\\protocol\\prepared_stmt.pyx", line 175, in asyncpg.protocol.protocol.PreparedStatementState._encode_bind_msg
+  File "asyncpg\\protocol\\codecs/base.pyx", line 227, in asyncpg.protocol.protocol.Codec.encode
+  File "asyncpg\\protocol\\codecs/base.pyx", line 129, in asyncpg.protocol.protocol.Codec.encode_scalar
+  File "asyncpg\\pgproto\\./codecs/int.pyx", line 54, in asyncpg.pgproto.pgproto.int4_encode
+TypeError: 'coroutine' object cannot be interpreted as an integer
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py", line 545, in _prepare_and_execute
+    self._rows = deque(await prepared_stmt.fetch(*parameters))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\asyncpg\prepared_stmt.py", line 176, in fetch
+    data = await self.__bind_execute(args, 0, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\asyncpg\prepared_stmt.py", line 267, in __bind_execute
+    data, status, _ = await self.__do_execute(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^
+        lambda protocol: protocol.bind_execute(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            self._state, args, '', limit, True, timeout))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\asyncpg\prepared_stmt.py", line 256, in __do_execute
+    return await executor(protocol)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "asyncpg\\protocol\\protocol.pyx", line 185, in bind_execute
+  File "asyncpg\\protocol\\prepared_stmt.pyx", line 204, in asyncpg.protocol.protocol.PreparedStatementState._encode_bind_msg
+asyncpg.exceptions.DataError: invalid input for query argument $1: <coroutine object get_id_from_access_tok... ('coroutine' object cannot be interpreted as an integer)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 942, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py", line 580, in execute
+    self._adapt_connection.await_(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self._prepare_and_execute(operation, parameters)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py", line 558, in _prepare_and_execute
+    self._handle_exception(error)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py", line 508, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py", line 792, in _handle_exception
+    raise translated_error from error
+sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.Error: <class 'asyncpg.exceptions.DataError'>: invalid input for query argument $1: <coroutine object get_id_from_access_tok... ('coroutine' object cannot be interpreted as an integer)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\sslinnn\Desktop\PartyFinder\middleware\error_handler.py", line 12, in error_handler
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\middleware\base.py", line 163, in call_next
+    raise app_exc
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\middleware\base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\fastapi\routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\api\users\router.py", line 54, in update_user
+    return updated_user
+                   ^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\services\user_service.py", line 39, in update_user
+    logger.warning(f"Пользователь не найден: {user_id}")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\ext\asyncio\session.py", line 463, in execute
+    result = await greenlet_spawn(
+             ^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 201, in greenlet_spawn
+    result = context.throw(*sys.exc_info())
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2365, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2251, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<4 lines>...
+        conn,
+        ^^^^^
+    )
+    ^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\orm\context.py", line 305, in orm_execute_statement
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 942, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py", line 580, in execute
+    self._adapt_connection.await_(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self._prepare_and_execute(operation, parameters)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py", line 558, in _prepare_and_execute
+    self._handle_exception(error)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py", line 508, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\sslinnn\Desktop\PartyFinder\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py", line 792, in _handle_exception
+    raise translated_error from error
+sqlalchemy.exc.DBAPIError: (sqlalchemy.dialects.postgresql.asyncpg.Error) <class 'asyncpg.exceptions.DataError'>: invalid input for query argument $1: <coroutine object get_id_from_access_tok... ('coroutine' object cannot be interpreted as an integer)
+[SQL: SELECT users.id, users.username, users.password, users.email, users.email_confirmed, users.is_active, users.is_superuser, users.first_name, users.last_name, users.created_at, users.updated_at 
+FROM users 
+WHERE users.id = $1::INTEGER]
+[parameters: (<coroutine object get_id_from_access_token at 0x000002417AC31000>,)]
+(Background on this error at: https://sqlalche.me/e/20/dbapi)
+2025-02-23 21:20:15 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/users/me
+2025-02-23 21:20:15 - app - INFO - Запрос данных пользователя: 37
+2025-02-23 21:20:15 - app - INFO - данные пользователя: <models.User.User object at 0x000002417ABA7490>
+2025-02-23 21:20:15 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 21:20:20 - app - INFO - Приложение запущено
+2025-02-23 21:20:24 - middleware.error_handler - INFO - Входящий запрос: PATCH http://localhost:8000/api/users/update
+2025-02-23 21:20:24 - app - INFO - Запрос на обновление пользователя: 37
+2025-02-23 21:20:24 - services.user_service - INFO - Попытка обновления пользователя с ID: 37
+2025-02-23 21:20:24 - services.user_service - INFO - Пользователь успешно обновлен: 37
+2025-02-23 21:20:24 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 21:20:24 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/users/me
+2025-02-23 21:20:24 - app - INFO - Запрос данных пользователя: 37
+2025-02-23 21:20:24 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 21:20:44 - middleware.error_handler - INFO - Входящий запрос: PATCH http://localhost:8000/api/users/update
+2025-02-23 21:20:44 - app - INFO - Запрос на обновление пользователя: 37
+2025-02-23 21:20:44 - services.user_service - INFO - Попытка обновления пользователя с ID: 37
+2025-02-23 21:20:44 - services.user_service - INFO - Пользователь успешно обновлен: 37
+2025-02-23 21:20:44 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 21:20:44 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/users/me
+2025-02-23 21:20:44 - app - INFO - Запрос данных пользователя: 37
+2025-02-23 21:20:44 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 21:25:19 - app - INFO - Приложение остановлено
+2025-02-23 21:25:20 - app - INFO - Приложение запущено
+2025-02-23 21:25:20 - app - INFO - Приложение остановлено
+2025-02-23 21:25:21 - app - INFO - Приложение запущено
+2025-02-23 21:30:19 - app - INFO - Приложение остановлено
+2025-02-23 21:40:05 - app - INFO - Приложение запущено
+2025-02-23 21:45:04 - app - INFO - Приложение остановлено
+2025-02-23 21:45:05 - app - INFO - Приложение запущено
+2025-02-23 21:45:05 - app - INFO - Приложение остановлено
+2025-02-23 21:45:07 - app - INFO - Приложение запущено
+2025-02-23 21:55:06 - app - INFO - Приложение остановлено
+2025-02-23 21:55:08 - app - INFO - Приложение запущено
+2025-02-23 21:55:08 - app - INFO - Приложение остановлено
+2025-02-23 21:55:10 - app - INFO - Приложение запущено
+2025-02-23 22:00:08 - app - INFO - Приложение остановлено
+2025-02-23 22:00:10 - app - INFO - Приложение запущено
+2025-02-23 22:05:08 - app - INFO - Приложение остановлено
+2025-02-23 22:05:10 - app - INFO - Приложение запущено
+2025-02-23 22:05:10 - app - INFO - Приложение остановлено
+2025-02-23 22:05:11 - app - INFO - Приложение запущено
+2025-02-23 22:10:10 - app - INFO - Приложение остановлено
+2025-02-23 22:10:12 - app - INFO - Приложение запущено
+2025-02-23 22:15:11 - app - INFO - Приложение остановлено
+2025-02-23 22:15:13 - app - INFO - Приложение запущено
+2025-02-23 22:15:13 - app - INFO - Приложение остановлено
+2025-02-23 22:15:14 - app - INFO - Приложение запущено
+2025-02-23 22:20:13 - app - INFO - Приложение остановлено
+2025-02-23 22:20:14 - app - INFO - Приложение запущено
+2025-02-23 22:20:14 - app - INFO - Приложение остановлено
+2025-02-23 22:20:16 - app - INFO - Приложение запущено
+2025-02-23 22:21:11 - app - INFO - Приложение запущено
+2025-02-23 22:21:44 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/auth/logout
+2025-02-23 22:21:44 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 22:21:48 - middleware.error_handler - INFO - Входящий запрос: POST http://localhost:8000/api/auth/login
+2025-02-23 22:21:48 - api.auth.auth_router - INFO - Попытка входа пользователя: morison1991@mail.ru
+2025-02-23 22:21:49 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 22:21:49 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/users/me
+2025-02-23 22:21:49 - app - INFO - Запрос данных пользователя: 37
+2025-02-23 22:21:49 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 22:21:59 - middleware.error_handler - INFO - Входящий запрос: PATCH http://localhost:8000/api/users/update
+2025-02-23 22:21:59 - app - INFO - Запрос на обновление пользователя: 37
+2025-02-23 22:21:59 - services.user_service - INFO - Попытка обновления пользователя с ID: 37
+2025-02-23 22:21:59 - services.user_service - INFO - Пользователь успешно обновлен: 37
+2025-02-23 22:21:59 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 22:21:59 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/users/me
+2025-02-23 22:21:59 - app - INFO - Запрос данных пользователя: 37
+2025-02-23 22:21:59 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 22:22:03 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/auth/logout
+2025-02-23 22:22:03 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 22:22:07 - middleware.error_handler - INFO - Входящий запрос: POST http://localhost:8000/api/auth/login
+2025-02-23 22:22:07 - api.auth.auth_router - INFO - Попытка входа пользователя: morison1991@mail.ru
+2025-02-23 22:22:07 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 22:22:07 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/users/me
+2025-02-23 22:22:07 - app - INFO - Запрос данных пользователя: 37
+2025-02-23 22:22:07 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 22:22:14 - middleware.error_handler - INFO - Входящий запрос: PATCH http://localhost:8000/api/users/update
+2025-02-23 22:22:14 - app - INFO - Запрос на обновление пользователя: 37
+2025-02-23 22:22:14 - services.user_service - INFO - Попытка обновления пользователя с ID: 37
+2025-02-23 22:22:14 - services.user_service - INFO - Пользователь успешно обновлен: 37
+2025-02-23 22:22:14 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 22:22:14 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/users/me
+2025-02-23 22:22:14 - app - INFO - Запрос данных пользователя: 37
+2025-02-23 22:22:14 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 22:22:20 - middleware.error_handler - INFO - Входящий запрос: PATCH http://localhost:8000/api/users/update
+2025-02-23 22:22:20 - app - INFO - Запрос на обновление пользователя: 37
+2025-02-23 22:22:20 - services.user_service - INFO - Попытка обновления пользователя с ID: 37
+2025-02-23 22:22:20 - services.user_service - INFO - Пользователь успешно обновлен: 37
+2025-02-23 22:22:20 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 22:22:20 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/users/me
+2025-02-23 22:22:20 - app - INFO - Запрос данных пользователя: 37
+2025-02-23 22:22:20 - middleware.error_handler - INFO - Исходящий ответ: 200
+2025-02-23 22:23:53 - app - INFO - Приложение запущено
+2025-02-23 22:24:00 - middleware.error_handler - INFO - Входящий запрос: GET http://localhost:8000/api/auth/logout
+2025-02-23 22:24:00 - middleware.error_handler - INFO - Исходящий ответ: 200

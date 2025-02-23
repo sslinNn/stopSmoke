@@ -13,4 +13,8 @@ class NotFoundException(AppException):
 class ValidationException(AppException):
     """Исключение для ошибок валидации"""
     def __init__(self, message: str):
-        super().__init__(message, 400) 
+        super().__init__(message, 400)
+
+class DataBaseException(AppException):
+    def __init__(self, message: str):
+        super().__init__(message, 500)

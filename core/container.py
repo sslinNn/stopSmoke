@@ -2,11 +2,10 @@ from dependency_injector import containers, providers
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from services.user_service import UserService
-from database.database import get_db
 
 class Container(containers.DeclarativeContainer):
     wiring_config = containers.WiringConfiguration(
-        modules=["api.users.router", "api.auth.router"]
+        modules=["api.users_router", "api.auth_router"]
     )
     
     db = providers.Dependency(AsyncSession)

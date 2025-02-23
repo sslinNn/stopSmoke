@@ -1,5 +1,4 @@
-from pydantic import BaseModel, Field, EmailStr, validator
-from typing import Optional
+from pydantic import Field, EmailStr, validator
 from schemas.core_schema import CoreSchema
 
 class AuthBase(CoreSchema):

@@ -14,9 +14,7 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -
     if expires_delta:
         expire = datetime.utcnow() + expires_delta
     else:
-        expire = datetime.utcnow() + timedelta(
-            minutes=auth_data["access_token"]
-        )
+        expire = datetime.utcnow() + timedelta(minutes=auth_data["access_token"])
     to_encode.update({"exp": expire})
     encoded_jwt = jwt.encode(
         to_encode, auth_data["secret_key"], algorithm=auth_data["algorithm"]
@@ -33,6 +31,12 @@ def decode_access_token(token: str):
         )
     except JWTError:
         return None
+
+
+async def get_id_from_access_token(token: str) -> int:
+    payload = decode_access_token(token)
+    user_id = int(payload.get("sub"))
+    return user_id
 
 
 if __name__ == "__main__":

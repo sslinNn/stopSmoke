@@ -8,4 +8,4 @@ class UserNotFoundException(NotFoundException):
 class UserAlreadyExistsException(NotFoundException):
     """Исключение для случаев, когда пользователь уже существует"""
     def __init__(self, message: str = "Пользователь с таким email уже существует"):
-        super().__init__(message) 
+        super().__init__(message)
