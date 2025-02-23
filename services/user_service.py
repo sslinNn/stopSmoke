@@ -1,5 +1,4 @@
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select
 from models.User import User
 from schemas.user_schema import SUserProfile
 from exceptions.user_exceptions import UserNotFoundException

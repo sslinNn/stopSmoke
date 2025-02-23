@@ -2,13 +2,10 @@ import logging
 from logging import Logger
 
 from fastapi import HTTPException
-from pydantic import EmailStr
-from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from starlette import status
 
 from models.User import User
-from schemas.auth_schema import AuthRegister
 from schemas.user_schema import SUserCreate
 from services.utils import user_existing_by_email
 from utils.email_utils import create_username_by_email
