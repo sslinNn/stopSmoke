@@ -106,3 +106,17 @@
 2025-02-23 22:22:20 - 127.0.0.1:55323 - "PATCH /api/users/update HTTP/1.1" 200
 2025-02-23 22:22:20 - 127.0.0.1:55323 - "GET /api/users/me HTTP/1.1" 200
 2025-02-23 22:24:00 - 127.0.0.1:55401 - "GET /api/auth/logout HTTP/1.1" 200
+2025-02-23 22:28:03 - 127.0.0.1:55562 - "OPTIONS /api/auth/register HTTP/1.1" 200
+2025-02-23 22:28:04 - 127.0.0.1:55566 - "POST /api/auth/register HTTP/1.1" 500
+2025-02-23 22:29:26 - 127.0.0.1:55636 - "POST /api/auth/register HTTP/1.1" 201
+2025-02-23 22:29:26 - 127.0.0.1:55636 - "POST /api/auth/login HTTP/1.1" 500
+2025-02-23 22:30:13 - 127.0.0.1:55638 - "POST /api/auth/register HTTP/1.1" 201
+2025-02-23 22:30:13 - 127.0.0.1:55638 - "POST /api/auth/login HTTP/1.1" 500
+2025-02-23 22:31:28 - 127.0.0.1:55773 - "POST /api/auth/register HTTP/1.1" 201
+2025-02-23 22:31:29 - 127.0.0.1:55773 - "POST /api/auth/login HTTP/1.1" 200
+2025-02-23 22:31:29 - 127.0.0.1:55773 - "GET /api/users/me HTTP/1.1" 200
+2025-02-23 22:32:54 - 127.0.0.1:55823 - "OPTIONS /api/auth/login HTTP/1.1" 400
+2025-02-23 22:33:34 - 127.0.0.1:55859 - "GET /api/auth/logout HTTP/1.1" 200
+2025-02-23 22:33:38 - 127.0.0.1:55824 - "OPTIONS /api/auth/login HTTP/1.1" 200
+2025-02-23 22:33:38 - 127.0.0.1:55859 - "POST /api/auth/login HTTP/1.1" 200
+2025-02-23 22:33:38 - 127.0.0.1:55859 - "GET /api/users/me HTTP/1.1" 200

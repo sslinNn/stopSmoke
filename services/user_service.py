@@ -6,11 +6,9 @@ from exceptions.user_exceptions import UserNotFoundException
 import logging
 from logging import Logger
 
+from services.utils import user_existing_by_id
 
 logger: Logger = logging.getLogger(__name__)
-
-async def user_existing_by_email(email):
-    pass
 
 
 class UserService:
@@ -19,9 +17,7 @@ class UserService:
 
     async def get_user_data(self, user_id: int):
         try:
-            stmt = select(User).where(User.id == user_id)
-            result = await self.db.execute(stmt)
-            user = result.scalar_one_or_none()
+            user = await user_existing_by_id(user_id=user_id, db=self.db)
             if not user:
                 logger.warning(f"Пользователь не найден: {user_id}")
                 raise UserNotFoundException(f"Пользователь с ID {user_id} не найден")
@@ -36,8 +32,7 @@ class UserService:
         try:
             logger.info(f"Попытка обновления пользователя с ID: {user_id}")
 
-            result = await self.db.execute(select(User).filter(User.id == user_id))
-            user = result.scalar_one_or_none()
+            user = await user_existing_by_id(user_id=user_id, db = self.db)
             if not user:
                 logger.warning(f"Пользователь не найден: {user_id}")
                 raise UserNotFoundException(f"Пользователь с ID {user_id} не найден")
