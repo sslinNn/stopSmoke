@@ -5,7 +5,7 @@ from services.user_service import UserService
 
 class Container(containers.DeclarativeContainer):
     wiring_config = containers.WiringConfiguration(
-        modules=["api.users_router", "api.auth_router"]
+        modules=["routers.users_router", "routers.auth_router"]
     )
     
     db = providers.Dependency(AsyncSession)

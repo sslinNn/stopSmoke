@@ -1,3 +1,6 @@
+from typing import List
+
+from fastapi import UploadFile, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from models.User import User
 from schemas.user_schema import SUserProfile
@@ -5,6 +8,7 @@ from exceptions.user_exceptions import UserNotFoundException
 import logging
 from logging import Logger
 
+from services.file_service import FileService
 from services.utils import user_existing_by_id
 
 logger: Logger = logging.getLogger(__name__)
@@ -50,3 +54,30 @@ class UserService:
         except Exception as e:
             logger.error(f"Ошибка при обновлении пользователя {user_id}: {str(e)}")
             raise
+
+    async def update_user_avatar(self, user_id: int, file_service: FileService, file: UploadFile) -> User:
+        try:
+            logger.info(f"Попытка обновления аватара пользователя с ID: {user_id}")
+            
+            user = await user_existing_by_id(user_id=user_id, db=self.db)
+            if not user:
+                logger.warning(f"Пользователь не найден: {user_id}")
+                raise UserNotFoundException(f"Пользователь с ID {user_id} не найден")
+
+
+            avatar_path = await file_service.save_avatar(file, user_id)
+            
+            user.avatar_url = avatar_path
+            self.db.add(user)
+            await self.db.commit()
+            await self.db.refresh(user)
+            
+            logger.info(f"Аватар пользователя успешно обновлен: {user_id}")
+            return user
+            
+        except Exception as e:
+            logger.error(f"Ошибка при обновлении аватара пользователя {user_id}: {str(e)}")
+            raise
+
+    # async def get_all_users(self) -> List[User]:
+

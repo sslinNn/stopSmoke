@@ -1,7 +1,9 @@
 import logging
+import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from logging.config import dictConfig
+from fastapi.staticfiles import StaticFiles
 from core.logging_config import LOGGING_CONFIG
 from middleware.error_handler import error_handler
 from core.container import Container
@@ -15,6 +17,9 @@ app = FastAPI(title="Party Finder")
 # Инициализация контейнера
 container = Container()
 app.container = container
+
+UPLOAD_DIR = "uploads"
+AVATAR_DIR = os.path.join(UPLOAD_DIR, "avatars")
 
 # Добавляем middleware
 app.middleware("http")(error_handler)
@@ -35,15 +40,20 @@ app.add_middleware(
 )
 
 # Роутеры
-from api.auth_router import router as auth_router
-from api.users_router import router as users_router
+from routers.auth_router import router as auth_router
+from routers.users_router import router as users_router
 
 app.include_router(auth_router, prefix="/api/auth", tags=["Authentication"])
 app.include_router(users_router, prefix="/api/users", tags=["Users"])
 
+
+app.mount("/uploads", StaticFiles(directory=UPLOAD_DIR), name="uploads")
+
+
 @app.on_event("startup")
 async def startup_event():
     logger.info("Приложение запущено")
+
 
 @app.on_event("shutdown")
 async def shutdown_event():

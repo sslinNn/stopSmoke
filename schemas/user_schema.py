@@ -9,3 +9,4 @@ class SUserBase(CoreSchema):
 class SUserProfile(SUserBase):
     first_name: Optional[str] = Field(None, description="Имя")
     last_name: Optional[str] = Field(None, description="Фамилия")
+    avatar_url: Optional[str] = Field(None, description="Путь до аватара")
