@@ -1,6 +1,5 @@
 from fastapi import APIRouter, Depends, UploadFile
 from sqlalchemy.ext.asyncio import AsyncSession
-from starlette.responses import JSONResponse, Response
 from fastapi import APIRouter, status, Depends, HTTPException
 from starlette.requests import Request
 from app import logger
@@ -11,6 +10,8 @@ from services.user_service import UserService
 from utils.jwt_utils import get_id_from_access_token
 
 router = APIRouter()
+
+
 
 
 @router.get(
@@ -48,13 +49,10 @@ async def update_user(
 @router.post("/update/avatar")
 async def upload_avatar(
     request: Request,
-    upload_file: UploadFile,
-    file_service: FileService = Depends(),
-    db: AsyncSession = Depends(get_db)
+    file: UploadFile,
+    file_service: FileService
 ):
     token = request.cookies.get("access_token")
     user_id = await get_id_from_access_token(token)
-
-    user_service = UserService(db)
-    await user_service.update_user_avatar(user_id, file_service, upload_file)
-    return {"avatar_saved": "ok!"}
+    avatar_url = await file_service.save_avatar(file, user_id)
+    return {"avatar_url": avatar_url}

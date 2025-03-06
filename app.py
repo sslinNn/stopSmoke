@@ -1,28 +1,19 @@
 import logging
-import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from logging.config import dictConfig
 from fastapi.staticfiles import StaticFiles
-from core.logging_config import LOGGING_CONFIG
 from middleware.error_handler import error_handler
-from core.container import Container
 
-# Применяем конфигурацию логирования
-dictConfig(LOGGING_CONFIG)
+# Конфигурация логирования
 logger = logging.getLogger(__name__)
 
 app = FastAPI(title="Party Finder")
 
-# Инициализация контейнера
-container = Container()
-app.container = container
-
-UPLOAD_DIR = "uploads"
-AVATAR_DIR = os.path.join(UPLOAD_DIR, "avatars")
+# UPLOAD_DIR = "uploads"
+# AVATAR_DIR = os.path.join(UPLOAD_DIR, "avatars")
 
 # Добавляем middleware
-app.middleware("http")(error_handler)
+# app.middleware("http")(error_handler)
 
 # Разрешённые источники
 origins = [
@@ -47,7 +38,7 @@ app.include_router(auth_router, prefix="/api/auth", tags=["Authentication"])
 app.include_router(users_router, prefix="/api/users", tags=["Users"])
 
 
-app.mount("/uploads", StaticFiles(directory=UPLOAD_DIR), name="uploads")
+# app.mount("/uploads", StaticFiles(directory=UPLOAD_DIR), name="uploads")
 
 
 @app.on_event("startup")

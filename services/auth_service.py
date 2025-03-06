@@ -1,13 +1,10 @@
 import logging
 from logging import Logger
-
-
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi import status, HTTPException
-
 from models.User import User
 from schemas.auth_schema import SAuthRegisterServer
-from services.utils import user_existing_by_email, create_username_by_email
+from utils.services_utils import user_existing_by_email, create_username_by_email
 from utils.jwt_utils import create_access_token
 from utils.password_utils import password_compare, get_password_hash
 

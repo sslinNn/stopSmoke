@@ -1,15 +1,12 @@
-from typing import List
-
-from fastapi import UploadFile, Depends
+from fastapi import UploadFile
 from sqlalchemy.ext.asyncio import AsyncSession
 from models.User import User
 from schemas.user_schema import SUserProfile
 from exceptions.user_exceptions import UserNotFoundException
 import logging
 from logging import Logger
-
 from services.file_service import FileService
-from services.utils import user_existing_by_id
+from utils.services_utils import user_existing_by_id
 
 logger: Logger = logging.getLogger(__name__)
 
@@ -78,6 +75,4 @@ class UserService:
         except Exception as e:
             logger.error(f"Ошибка при обновлении аватара пользователя {user_id}: {str(e)}")
             raise
-
-    # async def get_all_users(self) -> List[User]:
 
