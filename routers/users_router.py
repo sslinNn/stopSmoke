@@ -11,7 +11,7 @@ from utils.jwt_utils import get_id_from_access_token
 
 router = APIRouter()
 
-
+user_service = UserService(db=Depends(get_db))
 
 
 @router.get(
@@ -24,7 +24,6 @@ async def get_me(request: Request, db: AsyncSession = Depends(get_db)):
     user_id = await get_id_from_access_token(token)
 
     logger.info(f"Запрос данных пользователя: {user_id}")
-    user_service = UserService(db)
     current_user_data = await user_service.get_user_data(user_id)
     return current_user_data
 
@@ -42,7 +41,6 @@ async def update_user(
 
     logger.info(f"Запрос на обновление пользователя: {user_id}")
 
-    user_service = UserService(db)
     updated_user = await user_service.update_user(user_id, user_data)
     return updated_user
 
@@ -50,9 +48,9 @@ async def update_user(
 async def upload_avatar(
     request: Request,
     file: UploadFile,
-    file_service: FileService
+    # file_service: FileService
 ):
     token = request.cookies.get("access_token")
     user_id = await get_id_from_access_token(token)
-    avatar_url = await file_service.save_avatar(file, user_id)
-    return {"avatar_url": avatar_url}
+    # avatar_url = await file_service.save_avatar(file, user_id)
+    # return {"avatar_url": avatar_url}

@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, UTC
 from typing import Optional
 from jose import jwt, JWTError
 from config import get_auth_data
@@ -6,15 +6,19 @@ from config import get_auth_data
 
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -> str:
     """
-    Генерируем JWT-токен, в payload добавляем data.
-    expires_delta - время жизни токена, по умолчанию 30 минут.
+    Генерирует JWT-токен, в payload добавляет data.
+    Args:
+        data: полезная информация в токене
+        expires_delta: время жизни токена, по умолчанию 30 минут.
+    Returns:
+        str: access_token
     """
     auth_data = get_auth_data()
     to_encode = data.copy()
     if expires_delta:
-        expire = datetime.utcnow() + expires_delta
+        expire = datetime.now(UTC) + expires_delta
     else:
-        expire = datetime.utcnow() + timedelta(minutes=auth_data["access_token"])
+        expire = datetime.now(UTC) + timedelta(minutes=auth_data["access_token"])
     to_encode.update({"exp": expire})
     encoded_jwt = jwt.encode(
         to_encode, auth_data["secret_key"], algorithm=auth_data["algorithm"]
@@ -23,7 +27,14 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -
 
 
 # Декодирование токена
-def decode_access_token(token: str):
+def decode_access_token(token: str) -> dict:
+    """
+    Декодирует JWT-токен.
+    Args:
+        token: access_token
+    Returns:
+        dict: payload, expires_time
+    """
     auth_data = get_auth_data()
     try:
         return jwt.decode(
@@ -34,12 +45,13 @@ def decode_access_token(token: str):
 
 
 async def get_id_from_access_token(token: str) -> int:
+    """
+    Получает sub из JWT-токена.
+    Args:
+        token: access_token
+    Returns:
+        int: id пользователя
+    """
     payload = decode_access_token(token)
     user_id = int(payload.get("sub"))
     return user_id
-
-
-if __name__ == "__main__":
-    key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyNCIsImV4cCI6MTc0MTI2MjY4MX0.ynyHsRrKPqoPamHo4-6Yb7jZbqTuFHEzqoq1Hr2T90g"
-    data = decode_access_token(key)
-    print(data)
