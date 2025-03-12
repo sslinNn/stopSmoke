@@ -1,4 +1,4 @@
-from exceptions.base import NotFoundException
+from src.exceptions.base import NotFoundException
 
 class UserNotFoundException(NotFoundException):
     """Исключение для случаев, когда пользователь не найден"""

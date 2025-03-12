@@ -2,10 +2,10 @@ import logging
 from fastapi import APIRouter, status, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from starlette.responses import JSONResponse, Response
-from database.database import get_db
-from exceptions.user_exceptions import UserAlreadyExistsException
-from schemas.auth_schema import SAuthBase, SAuthRegisterServer, SAuthRegisterClient
-from services.auth_service import AuthService
+from src.database import get_db
+from src.exceptions.user_exceptions import UserAlreadyExistsException
+from src.schemas.auth_schema import SAuthBase, SAuthRegisterClient
+from src.services.auth_service import AuthService
 
 router = APIRouter()
 

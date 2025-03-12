@@ -1,7 +1,7 @@
 from pydantic import EmailStr
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from models.User import User
+from src.models.users import User
 
 async def user_existing_by_email(email: EmailStr, db: AsyncSession) -> User:
     stmt = select(User).where(User.email == email)

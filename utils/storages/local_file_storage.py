@@ -1,6 +1,6 @@
 import aiofiles
 from fastapi import UploadFile
-from interfaces.file_storage_interface import FileStorageInterface
+from src.interfaces.file_storage_interface import FileStorageInterface
 from pathlib import Path
 
 

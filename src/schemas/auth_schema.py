@@ -1,5 +1,5 @@
 from pydantic import Field, EmailStr, validator
-from schemas.core_schema import CoreSchema
+from src.schemas.core_schema import CoreSchema
 
 
 class SAuthBase(CoreSchema):

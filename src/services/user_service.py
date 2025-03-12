@@ -1,11 +1,11 @@
 from fastapi import UploadFile
 from sqlalchemy.ext.asyncio import AsyncSession
-from models.User import User
-from schemas.user_schema import SUserProfile
-from exceptions.user_exceptions import UserNotFoundException
+from src.models.users import User
+from src.schemas.user_schema import SUserProfile
+from src.exceptions.user_exceptions import UserNotFoundException
 import logging
 from logging import Logger
-from services.file_service import FileService
+from src.services.file_service import FileService
 from utils.services_utils import user_existing_by_id
 
 logger: Logger = logging.getLogger(__name__)

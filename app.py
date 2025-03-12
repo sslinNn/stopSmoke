@@ -1,8 +1,8 @@
 import logging
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.staticfiles import StaticFiles
-from middleware.error_handler import error_handler
+
+from src.api import main_router
 
 # Конфигурация логирования
 logger = logging.getLogger(__name__)
@@ -30,12 +30,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Роутеры
-from routers.auth_router import router as auth_router
-from routers.users_router import router as users_router
 
-app.include_router(auth_router, prefix="/api/auth", tags=["Authentication"])
-app.include_router(users_router, prefix="/api/users", tags=["Users"])
+app.include_router(main_router)
 
 
 # app.mount("/uploads", StaticFiles(directory=UPLOAD_DIR), name="uploads")

@@ -1,6 +1,6 @@
 from typing import Optional
 from pydantic import  Field, EmailStr
-from schemas.core_schema import CoreSchema
+from src.schemas.core_schema import CoreSchema
 
 class SUserBase(CoreSchema):
     email: Optional[EmailStr] = Field(None, description="Email пользователя")

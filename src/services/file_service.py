@@ -4,7 +4,7 @@ from logging import Logger
 from typing import Optional
 from pathlib import Path
 from sqlalchemy.ext.asyncio import AsyncSession
-from interfaces.file_storage_interface import FileStorageInterface
+from src.interfaces.file_storage_interface import FileStorageInterface
 from utils.services_utils import user_existing_by_id
 
 logger: Logger = logging.getLogger(__name__)
