@@ -6,6 +6,7 @@ from pathlib import Path
 from sqlalchemy.ext.asyncio import AsyncSession
 from src.interfaces.file_storage_interface import FileStorageInterface
 from utils.services_utils import user_existing_by_id
+import uuid
 
 logger: Logger = logging.getLogger(__name__)
 
@@ -28,80 +29,41 @@ class FileService:
     async def save_avatar(self, file: UploadFile, user_id: int) -> str:
         try:
             await self._validate_file(file)
-
+            
             # Удаляем старый аватар
-            old_avatar = await self._get_existing_avatar(user_id)
-            if old_avatar:
-                await self.storage.delete_file(old_avatar)
+            user = await user_existing_by_id(user_id, self.db)
+            if user and user.avatar_url:
+                await self.storage.delete_file(user.avatar_url)
 
-            file_path = await self._generate_file_path(file, user_id)
-            return await self.storage.save_file(file, file_path)
+            # Генерируем уникальное имя файла
+            extension = Path(file.filename).suffix
+            filename = f"{uuid.uuid4()}{extension}"
+            file_path = f"avatars/{filename}"  # Просто кладем в папку avatars
+
+            saved_path = await self.storage.save_file(file, file_path)
+
+            return saved_path
 
         except ValueError as e:
             raise HTTPException(status_code=400, detail=str(e))
         except Exception as e:
-            logging.error(f"Failed to save avatar for user {user_id}", exc_info=e)
-            raise HTTPException(status_code=500, detail="Internal server error")
+            logger.error(f"Ошибка при сохранении аватара для пользователя {user_id}", exc_info=e)
+            raise HTTPException(status_code=500, detail="Внутренняя ошибка сервера")
 
-    async def _validate_file(self, file: UploadFile) -> None:
-        if not file.filename:
-            raise ValueError("Filename is required")
-
+    async def _validate_file(self, file: UploadFile):
+        # Проверка расширения
         extension = Path(file.filename).suffix.lower()
         if extension not in self.allowed_extensions:
             raise ValueError(
-                f"Unsupported file type. Allowed: {self.allowed_extensions}"
+                f"Неподдерживаемый формат файла. Разрешены: {', '.join(self.allowed_extensions)}"
             )
 
-        content = await file.read()
-        if len(content) > self.max_file_size:
+        # Проверка размера
+        file.file.seek(0, 2)  # Перемещаемся в конец файла
+        size = file.file.tell()  # Получаем размер
+        file.file.seek(0)  # Возвращаемся в начало
+        
+        if size > self.max_file_size:
             raise ValueError(
-                f"File size exceeds {self.max_file_size // 1024 // 1024}MB"
+                f"Файл слишком большой. Максимальный размер: {self.max_file_size / (1024 * 1024)}MB"
             )
-
-        # Возвращаем указатель файла в начало
-        await file.seek(0)
-
-    async def _get_existing_avatar(self, user_id: int) -> Optional[str]:
-        """
-        Получает путь к существующему аватару пользователя
-
-        Args:
-            user_id: ID пользователя
-
-        Returns:
-            Optional[str]: Путь к файлу аватара или None, если аватар не найден
-        """
-        try:
-            user = await user_existing_by_id(user_id=user_id, db=self.db)
-            if user and user.avatar_url:
-                return user.avatar_url
-            return None
-        except Exception as e:
-            logger.error(f"Error getting existing avatar for user {user_id}: {str(e)}")
-            return None
-
-    async def _generate_file_path(self, file: UploadFile, user_id: int) -> str:
-        """
-        Генерирует путь для сохранения нового файла аватара
-
-        Args:
-            file: Загруженный файл
-            user_id: ID пользователя
-
-        Returns:
-            str: Путь для сохранения файла
-        """
-        extension = Path(file.filename).suffix.lower()
-        # Создаем структуру директорий по user_id для лучшей организации
-        # Например: avatars/000/000/001/avatar.jpg для user_id=1
-        user_id_str = str(user_id).zfill(9)  # Паддинг до 9 цифр
-        path_parts = [user_id_str[i : i + 3] for i in range(0, len(user_id_str), 3)]
-
-        relative_path = Path("avatars") / Path(*path_parts) / f"avatar{extension}"
-
-        # Создаем директории, если они не существуют
-        full_path = self.upload_dir / relative_path
-        full_path.parent.mkdir(parents=True, exist_ok=True)
-
-        return str(relative_path)

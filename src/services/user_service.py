@@ -64,7 +64,7 @@ class UserService:
 
             avatar_path = await file_service.save_avatar(file, user_id)
             
-            user.avatar_url = avatar_path
+            user.avatar_url = f"uploads/{avatar_path}"
             self.db.add(user)
             await self.db.commit()
             await self.db.refresh(user)

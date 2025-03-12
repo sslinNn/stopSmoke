@@ -1,6 +1,8 @@
 import logging
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from pathlib import Path
 
 from src.api import main_router
 
@@ -33,8 +35,13 @@ app.add_middleware(
 
 app.include_router(main_router)
 
+# Создаем директории при запуске
+UPLOAD_DIR = Path("uploads")
+AVATARS_DIR = UPLOAD_DIR / "avatars"
+AVATARS_DIR.mkdir(parents=True, exist_ok=True)
 
-# app.mount("/uploads", StaticFiles(directory=UPLOAD_DIR), name="uploads")
+# Монтируем директорию для статических файлов
+app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
 
 
 @app.on_event("startup")
