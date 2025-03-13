@@ -1,5 +1,9 @@
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncSession
+from sqlalchemy.orm import declarative_base
+
 import config
+
+Base = declarative_base()
 
 db_url = config.get_db_url()
 if not db_url:
