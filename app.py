@@ -19,9 +19,10 @@ app = FastAPI(title="Party Finder")
 
 # Разрешённые источники
 ORIGINS = [
-    # "http://localhost:5173",  # React (Vite)
-    # "http://127.0.0.1:5173",  # React на 127.0.0.1
-    "*"
+    "http://localhost:5173",  # React (Vite)
+    "http://127.0.0.1:5173",  # React на 127.0.0.1
+    # "*",
+    "http://localhost:5174"
 ]
 
 # Настройка CORS

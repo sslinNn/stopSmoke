@@ -1,9 +1,7 @@
-from fastapi import UploadFile, File
+from fastapi import UploadFile
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi import APIRouter, Depends
-from starlette.datastructures import FormData
 from starlette.requests import Request
-# from app import logger
 from src.schemas.user_schema import SUserProfile, SUserAvatar, RSUserProfile
 from src.database import get_db
 from src.services.user_service import UserService
