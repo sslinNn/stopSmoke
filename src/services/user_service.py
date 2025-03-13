@@ -6,7 +6,7 @@ from src.exceptions.user_exceptions import UserNotFoundException
 import logging
 from logging import Logger
 from src.services.file_service import FileService
-from utils.services_utils import user_existing_by_id
+from src.utils.services_utils import user_existing_by_id
 
 logger: Logger = logging.getLogger(__name__)
 

@@ -1,5 +1,5 @@
 import pytest
-from utils.jwt_utils import (
+from src.utils.jwt_utils import (
     create_access_token,
     decode_access_token,
     get_id_from_access_token,

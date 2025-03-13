@@ -5,7 +5,7 @@ from starlette.requests import Request
 from src.schemas.user_schema import SUserProfile, SUserAvatar, RSUserProfile
 from src.database import get_db
 from src.services.user_service import UserService
-from utils.jwt_utils import get_id_from_access_token
+from src.utils.jwt_utils import get_id_from_access_token
 from pathlib import Path
 from src.services.file_service import FileService
 from src.services.local_storage import LocalFileStorage

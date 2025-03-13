@@ -1,5 +1,5 @@
 from passlib.context import CryptContext
-from utils.password_utils import (
+from src.utils.password_utils import (
     get_password_hash,
     password_compare,
 )

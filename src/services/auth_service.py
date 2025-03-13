@@ -4,9 +4,9 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi import status, HTTPException
 from src.models.users import User
 from src.schemas.auth_schema import SAuthRegisterServer
-from utils.services_utils import user_existing_by_email, create_username_by_email
-from utils.jwt_utils import create_access_token
-from utils.password_utils import password_compare, get_password_hash
+from src.utils.services_utils import user_existing_by_email, create_username_by_email
+from src.utils.jwt_utils import create_access_token
+from src.utils.password_utils import password_compare, get_password_hash
 
 logger: Logger = logging.getLogger(__name__)
 
