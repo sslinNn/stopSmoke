@@ -18,15 +18,16 @@ app = FastAPI(title="Party Finder")
 # app.middleware("http")(error_handler)
 
 # Разрешённые источники
-origins = [
-    "http://localhost:5173",  # React (Vite)
-    "http://127.0.0.1:5173",  # React на 127.0.0.1
+ORIGINS = [
+    # "http://localhost:5173",  # React (Vite)
+    # "http://127.0.0.1:5173",  # React на 127.0.0.1
+    "*"
 ]
 
 # Настройка CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

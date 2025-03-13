@@ -1,9 +1,10 @@
-from fastapi import UploadFile
+from fastapi import UploadFile, File
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi import APIRouter, Depends
+from starlette.datastructures import FormData
 from starlette.requests import Request
 # from app import logger
-from src.schemas.user_schema import SUserProfile
+from src.schemas.user_schema import SUserProfile, SUserAvatar, RSUserProfile
 from src.database import get_db
 from src.services.user_service import UserService
 from utils.jwt_utils import get_id_from_access_token
@@ -30,7 +31,7 @@ def get_file_service(db: AsyncSession = Depends(get_db)) -> FileService:
 
 @router.get(
     "/me",
-    response_model=SUserProfile,
+    response_model=RSUserProfile,
     description="Получение данных текущего пользователя",
 )
 async def get_me(
@@ -43,7 +44,7 @@ async def get_me(
     # logger.info(f"Запрос данных пользователя: {user_id}")
     user_service = UserService(db)
     current_user_data = await user_service.get_user_data(user_id)
-    return current_user_data
+    return {"success": True, "user_data": current_user_data }
 
 
 @router.patch(
@@ -63,9 +64,9 @@ async def update_user(
 
     user_service = UserService(db)
     updated_user = await user_service.update_user(user_id, user_data)
-    return updated_user
+    return {"success": True, "message": "Пользователь успешно обновлен!" , "user_data": updated_user}
 
-@router.post("/update/avatar", response_model=SUserProfile)
+@router.post("/update/avatar", response_model=SUserAvatar)
 async def upload_avatar(
     request: Request,
     file: UploadFile,
@@ -74,7 +75,7 @@ async def upload_avatar(
 ):
     token = request.cookies.get("access_token")
     user_id = await get_id_from_access_token(token)
-    
+
     user_service = UserService(db)
     updated_user = await user_service.update_user_avatar(user_id, file_service, file)
-    return updated_user
+    return {'avatar_url': updated_user.avatar_url}

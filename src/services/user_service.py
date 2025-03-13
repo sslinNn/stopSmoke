@@ -32,6 +32,7 @@ class UserService:
             logger.info(f"Попытка обновления пользователя с ID: {user_id}")
 
             user = await user_existing_by_id(user_id=user_id, db = self.db)
+
             if not user:
                 logger.warning(f"Пользователь не найден: {user_id}")
                 raise UserNotFoundException(f"Пользователь с ID {user_id} не найден")

@@ -1,7 +1,13 @@
+import logging
 from datetime import datetime, timedelta, UTC
+from logging import Logger
 from typing import Optional
+
+from fastapi import HTTPException
 from jose import jwt, JWTError
 from config import get_auth_data
+
+logger: Logger = logging.getLogger(__name__)
 
 
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -> str:
@@ -40,8 +46,11 @@ def decode_access_token(token: str) -> dict:
         return jwt.decode(
             token, auth_data["secret_key"], algorithms=[auth_data["algorithm"]]
         )
-    except JWTError:
-        return None
+    except JWTError as Je:
+        raise HTTPException(status_code=401, detail=str(Je))
+    except Exception as e:
+        logger.error(f"Ошибка при попытке декодирования токена: {str(e)}")
+        raise HTTPException(status_code=401, detail=str(e))
 
 
 async def get_id_from_access_token(token: str) -> int:
@@ -55,3 +64,4 @@ async def get_id_from_access_token(token: str) -> int:
     payload = decode_access_token(token)
     user_id = int(payload.get("sub"))
     return user_id
+

@@ -45,6 +45,7 @@ async def login(
             samesite="lax",
             max_age=3600 * 24 * 7,
         )
+        return {"success": True, "message": "Пользователь успешно аутентифицирован!" }
     except HTTPException as e:
         return JSONResponse(
             status_code=e.status_code,
