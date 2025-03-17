@@ -26,4 +26,24 @@ class SUserProfileAndAvatar(SUserAvatar, SUserProfile):
 class RSUserProfile(CoreSchema):
     success: bool
     user_data: SUserProfileAndAvatar
-    # user_data: Optional[SUserProfile, SUserAvatar]
+    # user_data: Optional[SUserProfile, SUserAvatar]\
+
+class RSUserRegistration(CoreSchema):
+    success: bool
+    message: Optional[str]
+
+class RSUserLogin(CoreSchema):
+    success: bool
+    message: Optional[str]
+
+class RSUserLogout(CoreSchema):
+    success: bool
+    message: Optional[str]
+
+class RSUserUpdate(CoreSchema):
+    success: bool
+    user_data: SUserProfile
+
+class RSUserUpdateAvatar(CoreSchema):
+    success: bool
+    avatar_data: SUserAvatar

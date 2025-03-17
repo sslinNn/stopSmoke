@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useUser } from '../contexts/UserContext';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 import LoggingSettings from '../components/settings/LoggingSettings';
 

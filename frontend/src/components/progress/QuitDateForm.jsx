@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useUser } from '../../contexts/UserContext';
 import logger from '../../services/LogService';
 
 function QuitDateForm() {

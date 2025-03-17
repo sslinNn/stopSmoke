@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useUser } from '../contexts/UserContext';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 import QuitDateForm from '../components/progress/QuitDateForm';
 import ProgressStats from '../components/progress/ProgressStats';

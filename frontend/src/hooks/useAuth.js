@@ -1,55 +1,29 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+/**
+ * Хук для работы с аутентификацией пользователя
+ * @returns {Object} Объект с данными пользователя и методами для работы с ними
+ */
 function useAuth() {
   const [userData, setUserData] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  useEffect(() => {
-    fetchUserData();
-  }, []);
-
-  const fetchUserData = async () => {
-    setIsLoading(true);
-    try {
-      const response = await fetch('/api/users/me', {
-        credentials: 'include'
-      });
-
-      if (response.status === 401) {
-        // Пользователь не авторизован
-        navigate('/login');
-        return;
-      }
-
-      if (!response.ok) {
-        throw new Error('Не удалось загрузить данные профиля');
-      }
-
-      const data = await response.json();
-      setUserData(data.user_data);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const updateUserData = (newData) => {
-    setUserData(prev => ({
-      ...prev,
-      ...newData
-    }));
+  /**
+   * Проверка, авторизован ли пользователь
+   * @returns {boolean} Статус авторизации
+   */
+  const isAuthenticated = () => {
+    return !!userData;
   };
 
   return {
     userData,
     isLoading,
     error,
-    updateUserData,
-    refreshUserData: fetchUserData
+    isAuthenticated
   };
 }
 

@@ -1,5 +1,4 @@
 import { Routes, Route } from 'react-router-dom';
-import { UserProvider } from './contexts/UserContext';
 import Layout from './components/layout/Layout';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
@@ -7,11 +6,9 @@ import RegisterPage from './pages/RegisterPage';
 import ProfilePage from './pages/ProfilePage';
 import ProgressPage from './pages/ProgressPage';
 import AchievementsPage from './pages/AchievementsPage';
-import CommunityPage from './pages/CommunityPage';
 import ResourcesPage from './pages/ResourcesPage';
 import SettingsPage from './pages/SettingsPage';
 import NotFoundPage from './pages/NotFoundPage';
-import LogoutPage from './pages/LogoutPage';
 
 function App() {
   return (
@@ -23,10 +20,8 @@ function App() {
         <Route path="profile" element={<ProfilePage />} />
         <Route path="progress" element={<ProgressPage />} />
         <Route path="achievements" element={<AchievementsPage />} />
-        <Route path="community" element={<CommunityPage />} />
         <Route path="resources" element={<ResourcesPage />} />
         <Route path="settings" element={<SettingsPage />} />
-        <Route path="logout" element={<LogoutPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>

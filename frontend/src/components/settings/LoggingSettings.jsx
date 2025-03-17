@@ -10,7 +10,7 @@ function LoggingSettings() {
     const currentLevel = localStorage.getItem('logLevel');
     if (currentLevel) {
       // Преобразуем числовое значение в строковое название уровня
-      const levelNames = Object.keys(logger.LOG_LEVELS);
+      const levelNames = Object.keys(logger.LOG_LEVELS || {});
       const levelName = levelNames.find(name => logger.LOG_LEVELS[name] === parseInt(currentLevel)) || 'INFO';
       setLogLevel(levelName);
     }

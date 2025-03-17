@@ -2,7 +2,7 @@ from fastapi import UploadFile
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi import APIRouter, Depends
 from starlette.requests import Request
-from src.schemas.user_schema import SUserProfile, SUserAvatar, RSUserProfile
+from src.schemas.user_schema import SUserProfile, SUserAvatar, RSUserProfile, RSUserUpdateAvatar, RSUserUpdate
 from src.database import get_db
 from src.services.user_service import UserService
 from src.utils.jwt_utils import get_id_from_access_token
@@ -47,7 +47,7 @@ async def get_me(
 
 @router.patch(
     "/update",
-    response_model=SUserProfile,
+    response_model=RSUserUpdate,
     description="Обновление данных пользователя",
 )
 async def update_user(
@@ -62,9 +62,9 @@ async def update_user(
 
     user_service = UserService(db)
     updated_user = await user_service.update_user(user_id, user_data)
-    return {"success": True, "message": "Пользователь успешно обновлен!" , "user_data": updated_user}
+    return {"success": True, "user_data": updated_user}
 
-@router.post("/update/avatar", response_model=SUserAvatar)
+@router.post("/update/avatar", response_model=RSUserUpdateAvatar)
 async def upload_avatar(
     request: Request,
     file: UploadFile,
@@ -76,4 +76,4 @@ async def upload_avatar(
 
     user_service = UserService(db)
     updated_user = await user_service.update_user_avatar(user_id, file_service, file)
-    return {'avatar_url': updated_user.avatar_url}
+    return {"success": True, 'avatar_data': updated_user.avatar_url}

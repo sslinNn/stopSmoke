@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useUser } from '../../contexts/UserContext';
+import logger from '../../services/LogService';
 
 function CravingLogger() {
   const { logCraving } = useUser();
@@ -34,25 +35,30 @@ function CravingLogger() {
     setNewAchievements([]);
 
     try {
+      logger.progress('Отправка данных о тяге', { intensity, trigger: selectedTrigger });
+      
       const result = await logCraving({
         intensity,
         trigger: selectedTrigger
       });
 
       if (result.success) {
+        logger.progress('Тяга успешно записана');
         setSuccess('Тяга успешно записана!');
         setSelectedTrigger('');
         setIntensity(5);
         
         if (result.newAchievements && result.newAchievements.length > 0) {
+          logger.achievements('Получены новые достижения', result.newAchievements);
           setNewAchievements(result.newAchievements);
         }
       } else {
+        logger.error('Не удалось записать тягу', result.error);
         setError(result.message || 'Не удалось записать тягу');
       }
     } catch (err) {
+      logger.error('Произошла ошибка при записи тяги', err);
       setError('Произошла ошибка при записи тяги');
-      console.error(err);
     } finally {
       setIsSubmitting(false);
     }

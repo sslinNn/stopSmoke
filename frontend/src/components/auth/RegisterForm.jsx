@@ -1,14 +1,22 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthForm from './AuthForm';
+import Input from '../common/Input';
+import logger from '../../services/LogService';
 
+/**
+ * Компонент формы регистрации
+ * @returns {JSX.Element} Компонент формы регистрации
+ */
 function RegisterForm() {
+  const { register } = useUser();
   const [formData, setFormData] = useState({
     email: '',
     username: '',
     password: '',
-    password_repeat: ''
+    confirmPassword: ''
   });
+  const [formErrors, setFormErrors] = useState({});
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
@@ -19,46 +27,80 @@ function RegisterForm() {
       ...prev,
       [name]: value
     }));
+    
+    // Очищаем ошибку поля при изменении
+    if (formErrors[name]) {
+      setFormErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }));
+    }
+  };
+
+  const validateForm = () => {
+    const errors = {};
+    
+    // Валидация email
+    if (!formData.email) {
+      errors.email = 'Email обязателен';
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      errors.email = 'Некорректный формат email';
+    }
+    
+    // Валидация имени пользователя
+    if (!formData.username) {
+      errors.username = 'Имя пользователя обязательно';
+    } else if (formData.username.length < 3) {
+      errors.username = 'Имя пользователя должно содержать не менее 3 символов';
+    } else if (!/^[a-zA-Z0-9_]+$/.test(formData.username)) {
+      errors.username = 'Имя пользователя может содержать только буквы, цифры и символ подчеркивания';
+    }
+    
+    // Валидация пароля
+    if (!formData.password) {
+      errors.password = 'Пароль обязателен';
+    } else if (formData.password.length < 6) {
+      errors.password = 'Пароль должен содержать не менее 6 символов';
+    }
+    
+    // Валидация подтверждения пароля
+    if (!formData.confirmPassword) {
+      errors.confirmPassword = 'Подтверждение пароля обязательно';
+    } else if (formData.password !== formData.confirmPassword) {
+      errors.confirmPassword = 'Пароли не совпадают';
+    }
+    
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
-    setError('');
-    console.log('🔄 Отправка запроса на регистрацию...');
-
-    // Проверка совпадения паролей
-    if (formData.password !== formData.password_repeat) {
-      console.error('❌ Пароли не совпадают');
-      setError('Пароли не совпадают');
-      setIsLoading(false);
+    
+    if (!validateForm()) {
       return;
     }
+    
+    setIsLoading(true);
+    setError('');
+    logger.auth('Отправка запроса на регистрацию', { email: formData.email, username: formData.username });
 
     try {
-      const response = await fetch('/api/auth/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
+      const result = await register({
+        email: formData.email,
+        username: formData.username,
+        password: formData.password
       });
-
-      console.log(`📥 Ответ от /api/auth/register: ${response.status}`);
-      const data = await response.json();
-
-      if (!response.ok) {
-        console.error('❌ Ошибка при регистрации:', data);
-        throw new Error(data.detail || 'Ошибка при регистрации');
-      }
-
-      console.log('✅ Регистрация выполнена успешно');
       
-      // Успешная регистрация, перенаправляем на страницу входа
-      console.log('🔄 Перенаправление на страницу входа...');
-      navigate('/login');
+      if (!result.success) {
+        throw new Error(result.error || 'Ошибка при регистрации');
+      }
+      
+      logger.auth('Регистрация выполнена успешно');
+      logger.auth('Перенаправление на страницу профиля');
+      navigate('/profile');
     } catch (err) {
-      console.error('❌ Ошибка при регистрации:', err);
+      logger.error('Ошибка при регистрации', err);
       setError(err.message);
     } finally {
       setIsLoading(false);
@@ -77,70 +119,51 @@ function RegisterForm() {
       footerLinkText="Войти"
       footerLinkTo="/login"
     >
-      <div className="form-control">
-        <label className="label">
-          <span className="label-text">Email</span>
-        </label>
-        <input 
-          type="email" 
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          placeholder="example@mail.com" 
-          className="input input-bordered" 
-          required 
-        />
-      </div>
+      <Input 
+        label="Email"
+        type="email" 
+        name="email"
+        value={formData.email}
+        onChange={handleChange}
+        placeholder="example@mail.com" 
+        required
+        error={formErrors.email}
+      />
       
-      <div className="form-control">
-        <label className="label">
-          <span className="label-text">Имя пользователя</span>
-        </label>
-        <input 
-          type="text" 
-          name="username"
-          value={formData.username}
-          onChange={handleChange}
-          placeholder="Как к вам обращаться" 
-          className="input input-bordered" 
-          required 
-        />
-      </div>
+      <Input 
+        label="Имя пользователя"
+        type="text" 
+        name="username"
+        value={formData.username}
+        onChange={handleChange}
+        placeholder="username" 
+        required
+        error={formErrors.username}
+        helperText="Используйте только буквы, цифры и символ подчеркивания"
+      />
       
-      <div className="form-control">
-        <label className="label">
-          <span className="label-text">Пароль</span>
-        </label>
-        <input 
-          type="password" 
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          placeholder="Минимум 6 символов" 
-          className="input input-bordered" 
-          required 
-          minLength={6}
-        />
-        <p className="text-xs text-gray-500 mt-1">
-          Пароль должен содержать минимум 6 символов и не содержать кириллицу
-        </p>
-      </div>
+      <Input 
+        label="Пароль"
+        type="password" 
+        name="password"
+        value={formData.password}
+        onChange={handleChange}
+        placeholder="Введите пароль" 
+        required
+        error={formErrors.password}
+        helperText="Минимум 6 символов"
+      />
       
-      <div className="form-control">
-        <label className="label">
-          <span className="label-text">Повторите пароль</span>
-        </label>
-        <input 
-          type="password" 
-          name="password_repeat"
-          value={formData.password_repeat}
-          onChange={handleChange}
-          placeholder="Повторите пароль" 
-          className="input input-bordered" 
-          required 
-          minLength={6}
-        />
-      </div>
+      <Input 
+        label="Подтверждение пароля"
+        type="password" 
+        name="confirmPassword"
+        value={formData.confirmPassword}
+        onChange={handleChange}
+        placeholder="Повторите пароль" 
+        required
+        error={formErrors.confirmPassword}
+      />
     </AuthForm>
   );
 }

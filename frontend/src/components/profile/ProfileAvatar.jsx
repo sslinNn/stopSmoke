@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import apiService from '../../services/ApiService';
+import logger from '../../services/LogService';
 
 function ProfileAvatar({ userData, onAvatarUpdate }) {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -19,20 +21,18 @@ function ProfileAvatar({ userData, onAvatarUpdate }) {
     formData.append('file', selectedFile);
 
     try {
-      const response = await fetch('/api/users/update/avatar', {
-        method: 'POST',
-        body: formData,
-        credentials: 'include'
-      });
+      logger.auth('Загрузка аватара');
+      const response = await apiService.uploadFile('/api/users/update/avatar', formData);
 
-      if (!response.ok) {
+      if (response.success && response.avatar_data) {
+        logger.auth('Аватар успешно загружен');
+        onAvatarUpdate(response.avatar_data);
+        setSelectedFile(null);
+      } else {
         throw new Error('Не удалось загрузить аватар');
       }
-
-      const data = await response.json();
-      onAvatarUpdate(data.avatar_url);
-      setSelectedFile(null);
     } catch (err) {
+      logger.error('Ошибка при загрузке аватара', err);
       setError(err.message);
     } finally {
       setIsUploading(false);
@@ -40,38 +40,45 @@ function ProfileAvatar({ userData, onAvatarUpdate }) {
   };
 
   return (
-    <div className="card bg-base-100 shadow-xl">
-      <div className="card-body items-center text-center">
-        <div className="avatar">
-          <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-            <img src={userData?.avatar_url || '/placeholder-avatar.jpg'} alt="Аватар пользователя" />
-          </div>
+    <div className="flex flex-col items-center gap-4">
+      <div className="avatar">
+        <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+          {userData?.avatar_url ? (
+            <img 
+              src={userData.avatar_url} 
+              alt="Аватар пользователя" 
+              onError={(e) => {
+                logger.error('Ошибка загрузки аватара', e);
+                e.target.onerror = null;
+                e.target.src = 'https://placehold.co/100x100?text=User';
+              }}
+            />
+          ) : (
+            <div className="bg-primary text-primary-content flex items-center justify-center w-full h-full text-xl font-bold">
+              {userData?.username ? userData.username.charAt(0).toUpperCase() : 'У'}
+            </div>
+          )}
         </div>
-        
-        <h2 className="card-title mt-4">{userData?.username || 'Пользователь'}</h2>
-        <p>{userData?.email}</p>
-        
-        {error && (
-          <div className="alert alert-error mt-2">
-            <span>{error}</span>
-          </div>
-        )}
-        
-        <div className="mt-4 w-full">
-          <input 
-            type="file" 
-            className="file-input file-input-bordered w-full max-w-xs" 
-            onChange={handleFileChange}
-            accept="image/*"
-          />
-          <button 
-            className={`btn btn-primary mt-2 w-full ${isUploading ? 'loading' : ''}`}
-            onClick={handleUploadAvatar}
-            disabled={!selectedFile || isUploading}
-          >
-            {isUploading ? 'Загрузка...' : 'Обновить аватар'}
-          </button>
-        </div>
+      </div>
+      
+      {error && (
+        <div className="text-error text-sm">{error}</div>
+      )}
+      
+      <div className="form-control w-full max-w-xs">
+        <input 
+          type="file" 
+          className="file-input file-input-bordered w-full" 
+          onChange={handleFileChange}
+          accept="image/*"
+        />
+        <button 
+          className={`btn btn-primary btn-sm mt-2 w-full ${isUploading ? 'loading' : ''}`}
+          onClick={handleUploadAvatar}
+          disabled={!selectedFile || isUploading}
+        >
+          {isUploading ? 'Загрузка...' : 'Обновить аватар'}
+        </button>
       </div>
     </div>
   );

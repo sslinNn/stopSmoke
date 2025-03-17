@@ -56,6 +56,6 @@ async def shutdown_event():
     logger.info("Приложение остановлено")
 
 
-@app.get('/')
+@app.get('/', tags=["Main"])
 async def index():
     return {"message": "Hello World"}

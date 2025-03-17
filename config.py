@@ -28,7 +28,7 @@ def get_db_url():
 
 
 def get_auth_data():
-    return {"secret_key": settings.SECRET_KEY, "algorithm": settings.ALGORITHM, "access_token": settings.ACCESS_TOKEN_EXPIRE_MINUTES}
+    return {"secret_key": settings.SECRET_KEY, "algorithm": settings.ALGORITHM, "access_token_expire_minutes": settings.ACCESS_TOKEN_EXPIRE_MINUTES}
 
 def get_secret_key():
     return settings.SECRET_KEY
