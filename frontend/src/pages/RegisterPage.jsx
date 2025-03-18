@@ -1,7 +1,20 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectIsAuthenticated } from '../store/slices/authSlice';
+import FormRegister from '../components/auth/FormRegister';
 
 function RegisterPage() {
+  const navigate = useNavigate();
+  const isAuthenticated = useSelector(selectIsAuthenticated);
+  
+  // Если пользователь уже авторизован, перенаправляем на главную страницу
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/');
+    }
+  }, [isAuthenticated, navigate]);
+  
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col lg:flex-row-reverse">
@@ -10,38 +23,7 @@ function RegisterPage() {
           <p className="py-6">Создайте аккаунт, чтобы начать отслеживать свой прогресс и получать поддержку.</p>
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          <div className="card-body">
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Имя пользователя</span>
-              </label>
-              <input type="text" placeholder="имя пользователя" className="input input-bordered" />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Email</span>
-              </label>
-              <input type="email" placeholder="email" className="input input-bordered" />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Пароль</span>
-              </label>
-              <input type="password" placeholder="пароль" className="input input-bordered" />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Подтверждение пароля</span>
-              </label>
-              <input type="password" placeholder="подтверждение пароля" className="input input-bordered" />
-            </div>
-            <div className="form-control mt-6">
-              <button className="btn btn-primary">Зарегистрироваться</button>
-            </div>
-            <div className="text-center mt-4">
-              <p>Уже есть аккаунт? <Link to="/login" className="link link-primary">Войти</Link></p>
-            </div>
-          </div>
+          <FormRegister />
         </div>
       </div>
     </div>

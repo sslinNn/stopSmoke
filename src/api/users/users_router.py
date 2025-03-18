@@ -45,7 +45,7 @@ async def get_me(
     return {"success": True, "user_data": current_user_data }
 
 
-@router.patch(
+@router.put(
     "/update",
     response_model=RSUserUpdate,
     description="Обновление данных пользователя",
@@ -64,7 +64,7 @@ async def update_user(
     updated_user = await user_service.update_user(user_id, user_data)
     return {"success": True, "user_data": updated_user}
 
-@router.post("/update/avatar", response_model=RSUserUpdateAvatar)
+@router.post("/update/avatar")
 async def upload_avatar(
     request: Request,
     file: UploadFile,

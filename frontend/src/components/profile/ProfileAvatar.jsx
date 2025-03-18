@@ -1,41 +1,37 @@
 import { useState } from 'react';
-import apiService from '../../services/ApiService';
-import logger from '../../services/LogService';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateUserAvatar, selectUserLoading } from '../../store/slices/userSlice';
+import logger from '../../utils/logger';
+import { AVATAR } from '../../constants/auth';
 
-function ProfileAvatar({ userData, onAvatarUpdate }) {
+function ProfileAvatar({ userData }) {
+  const dispatch = useDispatch();
+  const isLoading = useSelector(selectUserLoading);
+  
   const [selectedFile, setSelectedFile] = useState(null);
-  const [isUploading, setIsUploading] = useState(false);
   const [error, setError] = useState('');
 
   const handleFileChange = (e) => {
     if (e.target.files && e.target.files[0]) {
       setSelectedFile(e.target.files[0]);
+      setError('');
     }
   };
 
   const handleUploadAvatar = async () => {
     if (!selectedFile) return;
 
-    setIsUploading(true);
     const formData = new FormData();
     formData.append('file', selectedFile);
 
     try {
       logger.auth('Загрузка аватара');
-      const response = await apiService.uploadFile('/api/users/update/avatar', formData);
-
-      if (response.success && response.avatar_data) {
-        logger.auth('Аватар успешно загружен');
-        onAvatarUpdate(response.avatar_data);
-        setSelectedFile(null);
-      } else {
-        throw new Error('Не удалось загрузить аватар');
-      }
+      await dispatch(updateUserAvatar(formData)).unwrap();
+      logger.auth('Аватар успешно загружен');
+      setSelectedFile(null);
     } catch (err) {
       logger.error('Ошибка при загрузке аватара', err);
-      setError(err.message);
-    } finally {
-      setIsUploading(false);
+      setError(err.message || 'Произошла ошибка при загрузке аватара');
     }
   };
 
@@ -45,7 +41,7 @@ function ProfileAvatar({ userData, onAvatarUpdate }) {
         <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
           {userData?.avatar_url ? (
             <img 
-              src={userData.avatar_url} 
+              src={AVATAR(userData)} 
               alt="Аватар пользователя" 
               onError={(e) => {
                 logger.error('Ошибка загрузки аватара', e);
@@ -73,11 +69,11 @@ function ProfileAvatar({ userData, onAvatarUpdate }) {
           accept="image/*"
         />
         <button 
-          className={`btn btn-primary btn-sm mt-2 w-full ${isUploading ? 'loading' : ''}`}
+          className={`btn btn-primary btn-sm mt-2 w-full ${isLoading ? 'loading' : ''}`}
           onClick={handleUploadAvatar}
-          disabled={!selectedFile || isUploading}
+          disabled={!selectedFile || isLoading}
         >
-          {isUploading ? 'Загрузка...' : 'Обновить аватар'}
+          {isLoading ? 'Загрузка...' : 'Обновить аватар'}
         </button>
       </div>
     </div>

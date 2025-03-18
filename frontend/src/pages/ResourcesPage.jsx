@@ -1,5 +1,3 @@
-import logger from '../services/LogService';
-
 function ResourcesPage() {
   const resources = [
     {

@@ -1,4 +1,5 @@
 import logging
+from datetime import datetime, UTC
 
 from fastapi import APIRouter, status, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -41,8 +42,14 @@ async def login(
     auth_service = AuthService(db)
     try:
         token = await auth_service.login_user(login_data.email, login_data.password)
-        expires_timestamp = decode_access_token(token)['exp']
-        print(expires_timestamp)
+        token_data = decode_access_token(token)
+        expires_timestamp = token_data['exp']
+        
+        # Вычисляем время жизни токена в секундах
+        current_timestamp = datetime.now(UTC).timestamp()
+        max_age = int(expires_timestamp - current_timestamp)
+        
+        print(f"Token expires at: {expires_timestamp}, max_age in seconds: {max_age}")
 
         response.set_cookie(
             key="access_token",
@@ -50,7 +57,7 @@ async def login(
             httponly=True,
             secure=False,
             samesite="lax",
-            max_age=expires_timestamp,
+            max_age=max_age,  # Используем время в секундах, а не timestamp
         )
         return {"success": True, "message": "Пользователь успешно аутентифицирован!" }
     except HTTPException as e:

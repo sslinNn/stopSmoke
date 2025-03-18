@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import logger from '../../services/LogService';
-
 /**
  * Компонент аватара пользователя
  * @param {Object} props - Свойства компонента
@@ -26,16 +24,6 @@ function Avatar({
   ...rest
 }) {
   const [hasError, setHasError] = useState(false);
-  
-  const handleError = (e) => {
-    logger.error('Ошибка загрузки аватара', e);
-    setHasError(true);
-    e.target.onerror = null;
-  };
-  
-  const handleLoad = () => {
-    logger.debug('Аватар успешно загружен');
-  };
   
   // Определяем размеры
   const sizeClasses = {

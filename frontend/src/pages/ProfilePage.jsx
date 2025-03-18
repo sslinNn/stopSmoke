@@ -1,6 +1,80 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectUser, selectAuthLoading, fetchCurrentUser } from '../store/slices/authSlice';
+import { updateUserProfile, selectUserLoading, selectUserError, selectUserSuccess, clearUserMessages } from '../store/slices/userSlice';
+import LogoutButton from '../components/auth/LogoutButton';
+import ProfileForm from "../components/profile/ProfileForm.jsx";
+import ProfileAvatar from '../components/profile/ProfileAvatar';
 
 function ProfilePage() {
+  const dispatch = useDispatch();
+  const user = useSelector(selectUser);
+  const isAuthLoading = useSelector(selectAuthLoading);
+  const isUserLoading = useSelector(selectUserLoading);
+  const error = useSelector(selectUserError);
+  const success = useSelector(selectUserSuccess);
+  
+  const [formData, setFormData] = useState({
+    username: '',
+    email: '',
+    first_name: '',
+    last_name: '',
+  });
+  
+  // Заполняем форму данными пользователя при загрузке
+  useEffect(() => {
+    if (user) {
+      setFormData({
+        username: user.username || '',
+        email: user.email || '',
+        first_name: user.first_name || '',
+        last_name: user.last_name || '',
+      });
+    }
+  }, [user]);
+  
+  // Очищаем сообщения об успехе/ошибке через 5 секунд
+  useEffect(() => {
+    if (error || success) {
+      const timer = setTimeout(() => {
+        dispatch(clearUserMessages());
+      }, 5000);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [error, success, dispatch]);
+  
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    try {
+      await dispatch(updateUserProfile(formData)).unwrap();
+      // Обновляем данные пользователя после успешного обновления профиля
+      dispatch(fetchCurrentUser());
+    } catch (err) {
+      console.error('Ошибка обновления профиля:', err);
+    }
+  };
+  
+  const isLoading = isAuthLoading || isUserLoading;
+  
+  if (isAuthLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="loading loading-spinner loading-lg"></div>
+      </div>
+    );
+  }
+
+
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -8,34 +82,17 @@ function ProfilePage() {
         <div className="md:col-span-1">
           <div className="card bg-base-100 shadow-xl">
             <div className="card-body items-center text-center">
-              <div className="avatar">
-                <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                  <img src="https://placehold.co/100x100?text=User" alt="Аватар пользователя" />
-                </div>
-              </div>
+              <ProfileAvatar 
+                userData={user} 
+              />
               
-              <h2 className="card-title mt-4">Имя пользователя</h2>
-              <p>user@example.com</p>
-              
-              <div className="mt-4">
-                <button className="btn btn-primary btn-sm">
-                  Изменить аватар
-                </button>
-              </div>
+              <h2 className="card-title mt-4">{user?.username || 'Пользователь'}</h2>
+              <p>{user?.email || 'email@example.com'}</p>
               
               <div className="divider"></div>
-              
-              <div className="stats shadow">
-                <div className="stat">
-                  <div className="stat-title">Дней без курения</div>
-                  <div className="stat-value">0</div>
-                </div>
-              </div>
-              
+
               <div className="mt-6">
-                <button className="btn btn-outline btn-error">
-                  Выйти из системы
-                </button>
+                <LogoutButton className="btn btn-outline btn-error" />
               </div>
             </div>
           </div>
@@ -47,7 +104,21 @@ function ProfilePage() {
             <div className="card-body">
               <h2 className="card-title">Профиль пользователя</h2>
               
-              <form>
+              {error && (
+                <div className="alert alert-error mb-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                  <span>{typeof error === 'string' ? error : 'Ошибка обновления профиля'}</span>
+                </div>
+              )}
+              
+              {success && (
+                <div className="alert alert-success mb-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                  <span>{success}</span>
+                </div>
+              )}
+              
+              <form onSubmit={handleSubmit}>
                 <div className="form-control w-full">
                   <label className="label">
                     <span className="label-text">Имя пользователя</span>
@@ -57,6 +128,8 @@ function ProfilePage() {
                     name="username"
                     className="input input-bordered w-full" 
                     placeholder="Имя пользователя"
+                    value={formData.username}
+                    onChange={handleChange}
                   />
                 </div>
                 
@@ -69,7 +142,8 @@ function ProfilePage() {
                     name="email"
                     className="input input-bordered w-full" 
                     placeholder="Email"
-                    disabled
+                    value={formData.email}
+                    onChange={handleChange}
                   />
                 </div>
                 
@@ -82,6 +156,8 @@ function ProfilePage() {
                     name="first_name"
                     className="input input-bordered w-full" 
                     placeholder="Имя"
+                    value={formData.first_name}
+                    onChange={handleChange}
                   />
                 </div>
                 
@@ -94,15 +170,18 @@ function ProfilePage() {
                     name="last_name"
                     className="input input-bordered w-full" 
                     placeholder="Фамилия"
+                    value={formData.last_name}
+                    onChange={handleChange}
                   />
                 </div>
                 
                 <div className="card-actions justify-end mt-6">
                   <button 
-                    type="button"
-                    className="btn btn-primary"
+                    type="submit"
+                    className={`btn btn-primary ${isUserLoading ? 'loading' : ''}`}
+                    disabled={isUserLoading}
                   >
-                    Сохранить изменения
+                    {isUserLoading ? 'Сохранение...' : 'Сохранить изменения'}
                   </button>
                 </div>
               </form>
