@@ -14,45 +14,26 @@ function CravingLogger() {
   const isLoading = useSelector(selectProgressLoading);
   const error = useSelector(selectProgressError);
   const success = useSelector(selectProgressSuccess);
-  const [selectedTrigger, setSelectedTrigger] = useState('');
+  const [selectedTrigger, setSelectedTrigger] = useState(0);
   const [is_smoking , setIs_smoking ] = useState(false);
   const [intensity, setIntensity] = useState(0);
-
-  const [ formData, setFormData ] = useState({
-    intensity: 0,
-    reason_id: selectedTrigger,
-    is_smoking: false
-  })
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-  
-
   const [newAchievements, setNewAchievements] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
     if (!selectedTrigger) {
       // Используем Redux error вместо локального состояния
       return;
     }
-
-    setNewAchievements([]);
-
     try {
-      LogService.progress('Отправка данных о тяге', { intensity, reason_id: selectedTrigger, is_smoking });
-      
-      const result = await dispatch(progressSlice.logCraving({
-        intensity,
+      let data = {
         reason_id: selectedTrigger,
-        is_smoking
-      })).unwrap();
+        is_smoking,
+        intensity,
+      }
+
+      LogService.progress('Отправка данных о тяге', data);
+      const result = await dispatch(logCraving(data)).unwrap();
 
       if (result.success) {
         LogService.progress('Тяга успешно записана');

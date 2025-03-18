@@ -17,7 +17,7 @@ async def get_cravings():
     pass
 
 @router.post("/")
-async def add_craving(request: Request, data = Depends(SCraving), db: AsyncSession = Depends(get_db)):
+async def add_craving(request: Request, data: SCraving, db: AsyncSession = Depends(get_db)):
     try:
         token = request.cookies.get("access_token")
         user_id = await get_id_from_access_token(token)

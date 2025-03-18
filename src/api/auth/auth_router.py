@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
     description="Регистрация нового пользователя",
     response_model=RSUserRegistration
 )
-async def register_user(user_data= Depends(SAuthRegisterClient), db: AsyncSession = Depends(get_db)):
+async def register_user(user_data: SAuthRegisterClient, db: AsyncSession = Depends(get_db)):
     logger.info(f"Запрос на регистрацию пользователя: {user_data.email}")
     auth_service = AuthService(db)
     try:
@@ -36,7 +36,7 @@ async def register_user(user_data= Depends(SAuthRegisterClient), db: AsyncSessio
 
 @router.post("/login", description="Вход пользователя", response_model=RSUserLogin)
 async def login(
-    response: Response, login_data = Depends(SAuthBase), db: AsyncSession = Depends(get_db)
+    response: Response, login_data: SAuthBase, db: AsyncSession = Depends(get_db)
 ):
     logger.info(f"Попытка входа пользователя: {login_data.email}")
     auth_service = AuthService(db)
