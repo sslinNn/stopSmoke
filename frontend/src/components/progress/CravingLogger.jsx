@@ -1,14 +1,21 @@
 import { useState } from 'react';
-import { useUser } from '../../contexts/UserContext';
-import logger from '../../services/LogService';
+import { useDispatch, useSelector } from 'react-redux';
+import { 
+  logCraving, 
+  selectProgressLoading, 
+  selectProgressError, 
+  selectProgressSuccess 
+} from '../../store/slices/progressSlice';
+import LogService from '../../services/LogService';
 
 function CravingLogger() {
-  const { logCraving } = useUser();
+  const dispatch = useDispatch();
+  const isLoading = useSelector(selectProgressLoading);
+  const error = useSelector(selectProgressError);
+  const success = useSelector(selectProgressSuccess);
+  
   const [intensity, setIntensity] = useState(5);
   const [selectedTrigger, setSelectedTrigger] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
   const [newAchievements, setNewAchievements] = useState([]);
 
   const triggers = [
@@ -25,42 +32,32 @@ function CravingLogger() {
     e.preventDefault();
     
     if (!selectedTrigger) {
-      setError('Пожалуйста, выберите триггер');
+      // Используем Redux error вместо локального состояния
       return;
     }
 
-    setIsSubmitting(true);
-    setError('');
-    setSuccess('');
     setNewAchievements([]);
 
     try {
-      logger.progress('Отправка данных о тяге', { intensity, trigger: selectedTrigger });
+      LogService.progress('Отправка данных о тяге', { intensity, trigger: selectedTrigger });
       
-      const result = await logCraving({
+      const result = await dispatch(logCraving({
         intensity,
         trigger: selectedTrigger
-      });
+      })).unwrap();
 
       if (result.success) {
-        logger.progress('Тяга успешно записана');
-        setSuccess('Тяга успешно записана!');
+        LogService.progress('Тяга успешно записана');
         setSelectedTrigger('');
         setIntensity(5);
         
         if (result.newAchievements && result.newAchievements.length > 0) {
-          logger.achievements('Получены новые достижения', result.newAchievements);
+          LogService.achievements('Получены новые достижения', result.newAchievements);
           setNewAchievements(result.newAchievements);
         }
-      } else {
-        logger.error('Не удалось записать тягу', result.error);
-        setError(result.message || 'Не удалось записать тягу');
       }
     } catch (err) {
-      logger.error('Произошла ошибка при записи тяги', err);
-      setError('Произошла ошибка при записи тяги');
-    } finally {
-      setIsSubmitting(false);
+      LogService.error('Произошла ошибка при записи тяги', err);
     }
   };
 
@@ -148,10 +145,10 @@ function CravingLogger() {
         
         <button 
           type="submit" 
-          className={`btn btn-primary w-full ${isSubmitting ? 'loading' : ''}`}
-          disabled={isSubmitting || !selectedTrigger}
+          className={`btn btn-primary w-full ${isLoading ? 'loading' : ''}`}
+          disabled={isLoading || !selectedTrigger}
         >
-          {isSubmitting ? 'Сохранение...' : 'Записать тягу'}
+          {isLoading ? 'Сохранение...' : 'Записать тягу'}
         </button>
       </form>
     </div>

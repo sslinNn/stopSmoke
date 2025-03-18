@@ -1,4 +1,6 @@
 from sqlalchemy import Column, Integer, String, DateTime, Boolean, func
+from sqlalchemy.orm import relationship
+
 from src.database import Base
 
 
@@ -19,6 +21,8 @@ class User(Base):
     updated_at = Column(
         DateTime(timezone=True), server_default=func.now(), onupdate=func.now()
     )
+
+    cravings = relationship("CravingForSmoking", back_populates="user", cascade="all, delete-orphan")
 
 
 if __name__ == "__main__":

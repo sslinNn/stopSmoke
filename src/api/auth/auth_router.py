@@ -48,9 +48,6 @@ async def login(
         # Вычисляем время жизни токена в секундах
         current_timestamp = datetime.now(UTC).timestamp()
         max_age = int(expires_timestamp - current_timestamp)
-        
-        print(f"Token expires at: {expires_timestamp}, max_age in seconds: {max_age}")
-
         response.set_cookie(
             key="access_token",
             value=token,

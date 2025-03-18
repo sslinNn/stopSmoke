@@ -1,14 +1,21 @@
 import { useState } from 'react';
-import logger from '../../services/LogService';
+import { useDispatch, useSelector } from 'react-redux';
+import { 
+  setQuitDate, 
+  selectProgressLoading, 
+  selectProgressError, 
+  selectProgressSuccess 
+} from '../../store/slices/progressSlice';
 
 function QuitDateForm() {
-  const { setupQuitDate } = useUser();
-  const [quitDate, setQuitDate] = useState('');
+  const dispatch = useDispatch();
+  const isLoading = useSelector(selectProgressLoading);
+  const error = useSelector(selectProgressError);
+  const success = useSelector(selectProgressSuccess);
+  
+  const [quitDate, setQuitDateValue] = useState('');
   const [cigarettesPerDay, setCigarettesPerDay] = useState(10);
   const [packPrice, setPackPrice] = useState(200);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
 
   // Получаем текущую дату в формате YYYY-MM-DD для ограничения выбора даты
   const today = new Date().toISOString().split('T')[0];
@@ -16,50 +23,27 @@ function QuitDateForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // Валидация формы
+    // Валидация формы на стороне клиента
     if (!quitDate) {
-      setError('Пожалуйста, выберите дату отказа от курения');
       return;
     }
     
     if (cigarettesPerDay < 1) {
-      setError('Количество сигарет должно быть больше 0');
       return;
     }
     
     if (packPrice < 1) {
-      setError('Цена пачки должна быть больше 0');
       return;
     }
     
     try {
-      setIsSubmitting(true);
-      setError('');
-      setSuccess('');
-      
-      logger.debug('Отправка данных о дате отказа', { 
-        quitDate, 
-        cigarettesPerDay, 
-        packPrice 
-      });
-      
-      const result = await setupQuitDate({
+      await dispatch(setQuitDate({
         quit_date: quitDate,
         cigarettes_per_day: cigarettesPerDay,
-        pack_price: packPrice
-      });
-      
-      if (result.success) {
-        logger.progress('Дата отказа от курения установлена успешно');
-        setSuccess('Дата отказа от курения успешно установлена');
-      } else {
-        setError(result.error || 'Не удалось установить дату отказа от курения');
-      }
+        price_per_pack: packPrice
+      })).unwrap();
     } catch (err) {
-      logger.error('Ошибка при установке даты отказа', err);
-      setError('Произошла ошибка при установке даты отказа от курения');
-    } finally {
-      setIsSubmitting(false);
+      console.error('Ошибка при установке даты отказа:', err);
     }
   };
 
@@ -67,23 +51,19 @@ function QuitDateForm() {
     <div>
       {error && (
         <div className="alert alert-error mb-4">
-          <div className="flex-1">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mx-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <span>{error}</span>
-          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span>{error}</span>
         </div>
       )}
       
       {success && (
         <div className="alert alert-success mb-4">
-          <div className="flex-1">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mx-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <span>{success}</span>
-          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span>{success}</span>
         </div>
       )}
       
@@ -95,7 +75,7 @@ function QuitDateForm() {
           <input 
             type="date" 
             value={quitDate} 
-            onChange={(e) => setQuitDate(e.target.value)}
+            onChange={(e) => setQuitDateValue(e.target.value)}
             max={today}
             className="input input-bordered" 
             required
@@ -145,10 +125,10 @@ function QuitDateForm() {
         
         <button 
           type="submit" 
-          className={`btn btn-primary w-full ${isSubmitting ? 'loading' : ''}`}
-          disabled={isSubmitting}
+          className={`btn btn-primary w-full ${isLoading ? 'loading' : ''}`}
+          disabled={isLoading}
         >
-          {isSubmitting ? 'Сохранение...' : 'Начать путь к здоровью'}
+          {isLoading ? 'Сохранение...' : 'Начать путь к здоровью'}
         </button>
       </form>
     </div>
