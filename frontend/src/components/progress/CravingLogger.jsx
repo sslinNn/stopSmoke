@@ -1,34 +1,39 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { 
+import progressSlice, {
   logCraving, 
   selectProgressLoading, 
   selectProgressError, 
   selectProgressSuccess 
 } from '../../store/slices/progressSlice';
 import LogService from '../../services/LogService';
+import {trigger} from "../../constants/trigersForButtonsInCravingLogger.js";
 
 function CravingLogger() {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectProgressLoading);
   const error = useSelector(selectProgressError);
   const success = useSelector(selectProgressSuccess);
-  
-  const [intensity, setIntensity] = useState(0);
   const [selectedTrigger, setSelectedTrigger] = useState('');
-  const [newAchievements, setNewAchievements] = useState([]);
   const [is_smoking , setIs_smoking ] = useState(false);
-  const trigger = [
-    { id: '8', label: 'Не было тяги' },
-    { id: '1', label: 'Стресс' },
-    { id: '2', label: 'Кофе' },
-    { id: '3', label: 'Алкоголь' },
-    { id: '4', label: 'После еды' },
-    { id: '5', label: 'Социальная ситуация' },
-    { id: '6', label: 'Скука' },
-    { id: '7', label: 'Другое' },
-    
-  ];
+  const [intensity, setIntensity] = useState(0);
+
+  const [ formData, setFormData ] = useState({
+    intensity: 0,
+    reason_id: selectedTrigger,
+    is_smoking: false
+  })
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+  
+
+  const [newAchievements, setNewAchievements] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,7 +48,7 @@ function CravingLogger() {
     try {
       LogService.progress('Отправка данных о тяге', { intensity, reason_id: selectedTrigger, is_smoking });
       
-      const result = await dispatch(logCraving({
+      const result = await dispatch(progressSlice.logCraving({
         intensity,
         reason_id: selectedTrigger,
         is_smoking
@@ -59,8 +64,8 @@ function CravingLogger() {
           setNewAchievements(result.newAchievements);
         }
       }
-    } catch (err) {
-      LogService.error('Произошла ошибка при записи тяги', err);
+    } catch (error) {
+      LogService.error('Произошла ошибка при записи тяги:', error);
     }
   };
 
