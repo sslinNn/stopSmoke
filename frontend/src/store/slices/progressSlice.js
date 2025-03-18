@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import api from "../../services/api.js";
 
 // Имитация API сервиса
 const progressService = {
@@ -26,13 +27,8 @@ const progressService = {
   
   // Логирование тяги
   logCraving: async (data) => {
-    await new Promise(resolve => setTimeout(resolve, 500));
-    
-    return {
-      success: true,
-      message: 'Тяга успешно записана',
-      newAchievements: []
-    };
+    const response = await api.post('/cravings/', data);
+    return response.data;
   },
   
   // Установка даты отказа от курения

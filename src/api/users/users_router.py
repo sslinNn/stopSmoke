@@ -52,7 +52,7 @@ async def get_me(
 )
 async def update_user(
     request: Request, 
-    user_data: SUserProfile, 
+    user_data = Depends(SUserProfile),
     db: AsyncSession = Depends(get_db)
 ):
     token = request.cookies.get("access_token")

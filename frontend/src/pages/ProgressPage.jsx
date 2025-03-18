@@ -25,7 +25,7 @@ function ProgressPage() {
   const progressData = useSelector(selectProgressData);
   const isProgressLoading = useSelector(selectProgressLoading);
   const progressError = useSelector(selectProgressError);
-  
+
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [recentAchievements, setRecentAchievements] = useState([]);
@@ -33,15 +33,15 @@ function ProgressPage() {
   useEffect(() => {
     async function loadData() {
       if (!isAuthenticated) return;
-      
+
       setIsLoading(true);
       setError(null);
-      
+
       try {
         if (!progressData) {
           await dispatch(fetchProgressData()).unwrap();
         }
-        
+
         setRecentAchievements([
           {
             id: 1,
@@ -72,7 +72,7 @@ function ProgressPage() {
         setIsLoading(false);
       }
     }
-    
+
     loadData();
   }, [isAuthenticated, dispatch, progressData]);
 
@@ -171,71 +171,79 @@ function ProgressPage() {
             Отслеживайте свой путь к здоровой жизни без курения
           </p>
         </div>
-        
-        {/* Основной контент */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Левая колонка */}
-          <div className="space-y-8">
-            {/* Статистика прогресса */}
-            <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300">
-              <div className="card-body">
-                <h2 className="card-title text-2xl mb-6">Ваша статистика</h2>
-                <ProgressStats progressData={progressData} />
-              </div>
-            </div>
-            
-            {/* График улучшения здоровья */}
-            <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300">
-              <div className="card-body">
-                <h2 className="card-title text-2xl mb-6">Улучшения здоровья</h2>
-                <ProgressChart progressData={progressData} />
-              </div>
-            </div>
-            
-            {/* Таймлайн прогресса */}
-            <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300">
-              <div className="card-body">
-                <ProgressTimeline />
-              </div>
-            </div>
-          </div>
-          
-          {/* Правая колонка */}
-          <div className="space-y-8">
-            {/* Логгер тяги */}
-            <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300">
-              <div className="card-body">
-                <CravingLogger />
-              </div>
-            </div>
-            
-            {/* Логгер текущего состояния */}
-            <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300">
-              <div className="card-body">
-                <CurrentStateLogger />
-              </div>
-            </div>
-            
-            {/* Вехи прогресса */}
-            <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300">
-              <div className="card-body">
-                <ProgressMilestones />
-              </div>
-            </div>
-            
-            {/* Последние достижения */}
-            <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300">
-              <div className="card-body">
-                <h2 className="card-title text-2xl mb-6">Последние достижения</h2>
-                <AchievementsList 
-                  achievements={recentAchievements} 
-                  isLoading={isLoading} 
-                  showViewAll={true} 
-                />
-              </div>
-            </div>
+
+        {/* ЭТО НАДО БУДЕТ УДАЛИТЬ, А ТО, ЧТО СНИЗУ РАСКОММЕНТИТЬ! */}
+        {/* Логгер тяги */}
+        <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300">
+          <div className="card-body">
+            <CravingLogger />
           </div>
         </div>
+
+        {/* Основной контент */}
+        {/*<div className="grid grid-cols-1 lg:grid-cols-2 gap-8">*/}
+        {/*  /!* Левая колонка *!/*/}
+        {/*  <div className="space-y-8">*/}
+        {/*    /!* Статистика прогресса *!/*/}
+        {/*    <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300">*/}
+        {/*      <div className="card-body">*/}
+        {/*        <h2 className="card-title text-2xl mb-6">Ваша статистика</h2>*/}
+        {/*        <ProgressStats progressData={progressData} />*/}
+        {/*      </div>*/}
+        {/*    </div>*/}
+
+        {/*    /!* График улучшения здоровья *!/*/}
+        {/*    <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300">*/}
+        {/*      <div className="card-body">*/}
+        {/*        <h2 className="card-title text-2xl mb-6">Улучшения здоровья</h2>*/}
+        {/*        <ProgressChart progressData={progressData} />*/}
+        {/*      </div>*/}
+        {/*    </div>*/}
+        {/*    */}
+        {/*    /!* Таймлайн прогресса *!/*/}
+        {/*    <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300">*/}
+        {/*      <div className="card-body">*/}
+        {/*        <ProgressTimeline />*/}
+        {/*      </div>*/}
+        {/*    </div>*/}
+        {/*  </div>*/}
+        {/*  */}
+        {/*  /!* Правая колонка *!/*/}
+        {/*  <div className="space-y-8">*/}
+        {/*  /!*  /!* Логгер тяги *!/*!/*/}
+        {/*  /!*  <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300">*!/*/}
+        {/*  /!*    <div className="card-body">*!/*/}
+        {/*  /!*      <CravingLogger />*!/*/}
+        {/*  /!*    </div>*!/*/}
+        {/*  /!*  </div>*!/*/}
+        {/*    */}
+        {/*    /!* Логгер текущего состояния *!/*/}
+        {/*    <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300">*/}
+        {/*      <div className="card-body">*/}
+        {/*        <CurrentStateLogger />*/}
+        {/*      </div>*/}
+        {/*    </div>*/}
+        {/*    */}
+        {/*    /!* Вехи прогресса *!/*/}
+        {/*    <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300">*/}
+        {/*      <div className="card-body">*/}
+        {/*        <ProgressMilestones />*/}
+        {/*      </div>*/}
+        {/*    </div>*/}
+        {/*    */}
+        {/*    /!* Последние достижения *!/*/}
+        {/*    <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300">*/}
+        {/*      <div className="card-body">*/}
+        {/*        <h2 className="card-title text-2xl mb-6">Последние достижения</h2>*/}
+        {/*        <AchievementsList */}
+        {/*          achievements={recentAchievements} */}
+        {/*          isLoading={isLoading} */}
+        {/*          showViewAll={true} */}
+        {/*        />*/}
+        {/*      </div>*/}
+        {/*    </div>*/}
+        {/*  </div>*/}
+        {/*</div>*/}
       </div>
     </div>
   );

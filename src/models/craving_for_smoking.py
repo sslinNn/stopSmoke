@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, ForeignKey, Boolean, String, Date
+from sqlalchemy import Column, Integer, ForeignKey, Boolean, String, DateTime
 from sqlalchemy.orm import relationship
 
 from src.database import Base
@@ -12,7 +12,7 @@ class CravingForSmoking(Base):
     reason_id = Column(Integer, ForeignKey("reasons.id"), nullable=False)
     is_smoking = Column(Boolean, nullable=False, default=False)
     intensity = Column(Integer, nullable=False, default=0)  # Можно ограничить диапазон (0–10)
-    date = Column(Date, nullable=False)
+    date = Column(DateTime(timezone=True), nullable=False)
 
     # Определяем связи
     user = relationship("User", back_populates="cravings")

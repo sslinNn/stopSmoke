@@ -14,18 +14,20 @@ function CravingLogger() {
   const error = useSelector(selectProgressError);
   const success = useSelector(selectProgressSuccess);
   
-  const [intensity, setIntensity] = useState(5);
+  const [intensity, setIntensity] = useState(0);
   const [selectedTrigger, setSelectedTrigger] = useState('');
   const [newAchievements, setNewAchievements] = useState([]);
-
-  const triggers = [
-    { id: 'stress', label: 'Стресс' },
-    { id: 'food', label: 'После еды' },
-    { id: 'social', label: 'Социальная ситуация' },
-    { id: 'boredom', label: 'Скука' },
-    { id: 'alcohol', label: 'Алкоголь' },
-    { id: 'coffee', label: 'Кофе' },
-    { id: 'other', label: 'Другое' }
+  const [is_smoking , setIs_smoking ] = useState(false);
+  const trigger = [
+    { id: '8', label: 'Не было тяги' },
+    { id: '1', label: 'Стресс' },
+    { id: '2', label: 'Кофе' },
+    { id: '3', label: 'Алкоголь' },
+    { id: '4', label: 'После еды' },
+    { id: '5', label: 'Социальная ситуация' },
+    { id: '6', label: 'Скука' },
+    { id: '7', label: 'Другое' },
+    
   ];
 
   const handleSubmit = async (e) => {
@@ -39,11 +41,12 @@ function CravingLogger() {
     setNewAchievements([]);
 
     try {
-      LogService.progress('Отправка данных о тяге', { intensity, trigger: selectedTrigger });
+      LogService.progress('Отправка данных о тяге', { intensity, reason_id: selectedTrigger, is_smoking });
       
       const result = await dispatch(logCraving({
         intensity,
-        trigger: selectedTrigger
+        reason_id: selectedTrigger,
+        is_smoking
       })).unwrap();
 
       if (result.success) {
@@ -63,7 +66,7 @@ function CravingLogger() {
 
   return (
     <div className="w-full">
-      <h3 className="text-lg font-medium mb-4">Записать тягу к курению</h3>
+      <h3 className="text-lg font-medium mb-4">Отчет о тяге к курению</h3>
       
       {error && (
         <div className="alert alert-error mb-4">
@@ -103,12 +106,12 @@ function CravingLogger() {
         <div>
           <label className="form-control">
             <div className="label">
-              <span className="label-text">Интенсивность тяги (1-10)</span>
+              <span className="label-text">Интенсивность тяги (0-10)</span>
               <span className="label-text-alt">{intensity}</span>
             </div>
             <input 
               type="range" 
-              min="1" 
+              min="0" 
               max="10" 
               value={intensity} 
               onChange={(e) => setIntensity(parseInt(e.target.value))} 
@@ -129,7 +132,7 @@ function CravingLogger() {
               <span className="label-text">Что вызвало тягу?</span>
             </div>
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4">
-              {triggers.map(trigger => (
+              {trigger.map(trigger => (
                 <button
                   key={trigger.id}
                   type="button"
@@ -140,6 +143,18 @@ function CravingLogger() {
                 </button>
               ))}
             </div>
+          </label>
+        </div>
+
+        <div className="form-control">
+          <label className="label cursor-pointer justify-start gap-2">
+            <input 
+              type="checkbox"
+              className="checkbox checkbox-primary"
+              checked={is_smoking }
+              onChange={(e) => setIs_smoking (e.target.checked)}
+            />
+            <span className="label-text">Я покурил</span>
           </label>
         </div>
         
