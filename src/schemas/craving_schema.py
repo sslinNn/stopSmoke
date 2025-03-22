@@ -1,6 +1,3 @@
-from datetime import datetime, UTC, timezone
-
-from asyncpg.pgproto.pgproto import timedelta
 from pydantic import Field
 from src.schemas.core_schema import CoreSchema
 
