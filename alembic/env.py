@@ -9,6 +9,7 @@ from alembic import context
 from src.database import Base
 from src.models.users import Base
 from src.models.craving_for_smoking import Base
+from src.models.posts import Base
 
 from config import get_db_url
 db_url = get_db_url()

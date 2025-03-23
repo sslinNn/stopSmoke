@@ -6,6 +6,8 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from src.interfaces.file_storage_interface import FileStorageInterface
 from src.utils.services_utils import user_existing_by_id
 import uuid
+import io
+from PIL import Image
 
 logger: Logger = logging.getLogger(__name__)
 
@@ -25,9 +27,44 @@ class FileService:
         self.max_file_size = max_file_size
         self.db = db
 
+    async def _compress_image(self, file: UploadFile, max_size: tuple[int, int] = (800, 800), quality: int = 85) -> UploadFile:
+        """Сжимает изображение перед сохранением"""
+        # Считываем изображение
+        content = await file.read()
+        # Возвращаем указатель в начало файла для последующего использования
+        await file.seek(0)
+        
+        # Открываем изображение с помощью Pillow
+        img = Image.open(io.BytesIO(content))
+        
+        # Если формат не поддерживает альфа-канал, преобразуем в RGB
+        if img.mode in ('RGBA', 'LA') or (img.mode == 'P' and 'transparency' in img.info):
+            img = img.convert('RGB')
+        
+        # Изменяем размер с сохранением пропорций
+        img.thumbnail(max_size, Image.LANCZOS)
+        
+        # Создаем буфер для сжатого изображения
+        output = io.BytesIO()
+        
+        # Сохраняем изображение в буфер с указанным качеством
+        img.save(output, format='JPEG', quality=quality, optimize=True)
+        output.seek(0)
+        
+        # Создаем новый UploadFile с сжатым содержимым
+        compressed_file = UploadFile(
+            filename=file.filename,
+            file=output
+        )
+        
+        return compressed_file
+
     async def save_avatar(self, file: UploadFile, user_id: int) -> str:
         try:
             await self._validate_file(file)
+            
+            # Сжимаем изображение перед сохранением
+            compressed_file = await self._compress_image(file)
             
             # Удаляем старый аватар
             user = await user_existing_by_id(user_id, self.db)
@@ -35,11 +72,11 @@ class FileService:
                 await self.storage.delete_file(user.avatar_url)
 
             # Генерируем уникальное имя файла
-            extension = Path(file.filename).suffix
+            extension = ".jpg"  # Всегда сохраняем в JPEG формате после сжатия
             filename = f"{uuid.uuid4()}{extension}"
             file_path = f"avatars/{filename}"  # Просто кладем в папку avatars
 
-            saved_path = await self.storage.save_file(file, file_path)
+            saved_path = await self.storage.save_file(compressed_file, file_path)
 
             return saved_path
 

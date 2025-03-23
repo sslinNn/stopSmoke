@@ -1,11 +1,19 @@
 import pytest
 import asyncio
+from logging import Logger
+from src.database import get_db, Base, engine
+from src.models.users import User
 from fastapi.testclient import TestClient
+from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
+from sqlalchemy.ext.asyncio import async_sessionmaker, AsyncEngine
+from sqlalchemy.orm import sessionmaker
+from pathlib import Path
+import sys
 from httpx import AsyncClient
-from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine, async_sessionmaker
-from src.models.users import Base
-from src.database import get_db
 from app import app
+
+# Настройки для pytest-asyncio
+pytest_plugins = ['pytest_asyncio']
 
 # Тестовая БД
 TEST_DATABASE_URL = "sqlite+aiosqlite:///./test.db"
