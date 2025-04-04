@@ -11,6 +11,7 @@ class SUserBase(CoreSchema):
     username: Optional[str] = Field(None, pattern=r"^[^а-яА-ЯёЁ]*$", description="Имя пользователя")
 
 class SUserProfile(SUserBase):
+    id: Optional[int]
     first_name: Optional[str] = Field(None, description="Имя")
     last_name: Optional[str] = Field(None, description="Фамилия")
 
@@ -21,12 +22,23 @@ class SUserAvatar(CoreSchema):
 class SUserProfileAndAvatar(SUserAvatar, SUserProfile):
     pass
 
+class SUserProfileAndAvatarPublic(CoreSchema):
+    username: Optional[str] = Field(None, pattern=r"^[^а-яА-ЯёЁ]*$", description="Имя пользователя")
+    id: Optional[int]
+    first_name: Optional[str] = Field(None, description="Имя")
+    last_name: Optional[str] = Field(None, description="Фамилия")
+    avatar_url: Optional[str] = Field(None, description="Путь до аватара")
 
 """ Responses from API """
 class RSUserProfile(CoreSchema):
     success: bool
     user_data: SUserProfileAndAvatar
-    # user_data: Optional[SUserProfile, SUserAvatar]\
+
+
+class RSUserProfilePublic(CoreSchema):
+    success: bool
+    user_data: SUserProfileAndAvatarPublic
+
 
 class RSUserRegistration(CoreSchema):
     success: bool

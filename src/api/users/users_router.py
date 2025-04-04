@@ -1,8 +1,12 @@
 from fastapi import UploadFile
+from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi import APIRouter, Depends
 from starlette.requests import Request
-from src.schemas.user_schema import SUserProfile, SUserAvatar, RSUserProfile, RSUserUpdateAvatar, RSUserUpdate
+
+from src.models.users import User
+from src.schemas.user_schema import SUserProfile, SUserAvatar, RSUserProfile, RSUserUpdateAvatar, RSUserUpdate, \
+    RSUserProfilePublic
 from src.database import get_db
 from src.services.user_service import UserService
 from src.utils.jwt_utils import get_id_from_access_token
@@ -43,6 +47,14 @@ async def get_me(
     user_service = UserService(db)
     current_user_data = await user_service.get_user_data(user_id)
     return {"success": True, "user_data": current_user_data }
+
+
+@router.get("/{user_id}", response_model=RSUserProfilePublic, description="Данные пользователя с ID...")
+async def get_user(user_id: int, db: AsyncSession = Depends(get_db)):
+    stmt = select(User).where(User.id == user_id)
+
+    result = await db.execute(stmt)
+    return {"success": True, "user_data": result.scalars().one_or_none()}
 
 
 @router.put(

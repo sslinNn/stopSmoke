@@ -23,6 +23,8 @@ class User(Base):
     )
 
     cravings = relationship("CravingForSmoking", back_populates="user", cascade="all, delete-orphan")
+    comments_rel = relationship("PostComments", back_populates="user_rel", cascade="all, delete-orphan")
+    # likes_rel определен в классе PostLikes с использованием backref
 
 
 if __name__ == "__main__":

@@ -18,10 +18,12 @@ class Posts(Base):
     category = Column(Integer, ForeignKey('categories.id'), nullable=False)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     likes = Column(Integer, nullable=False, default=0)
+    comments = Column(Integer, default=0, nullable=False)
 
     author_rel = relationship('User', backref='posts')
     category_rel = relationship('Categories', backref='posts')
-    likes_rel = relationship('PostLikes', cascade='all, delete')  # УБРАЛ backref
+    likes_rel = relationship('PostLikes', cascade='all, delete', back_populates="post_rel")  # УБРАЛ backref
+    comments_rel = relationship('PostComments', cascade='all, delete', back_populates="post_rel")  # Связь с комментариями
 
 
 class PostLikes(Base):
@@ -32,7 +34,20 @@ class PostLikes(Base):
     user_id = Column(Integer, ForeignKey('users.id', ondelete="CASCADE"), nullable=False)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
-    post_rel = relationship('Posts')  # УБРАЛ backref, т.к. связь уже есть в `Posts`
+    post_rel = relationship('Posts', back_populates="likes_rel", overlaps="likes_rel")  # УБРАЛ backref, т.к. связь уже есть в `Posts`
     user_rel = relationship('User', backref='likes_rel', cascade="all, delete")
 
     __table_args__ = (UniqueConstraint('post_id', 'user_id', name='unique_post_user_like'),)
+
+
+class PostComments(Base):
+    __tablename__ = 'post_comments'
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    post_id = Column(Integer, ForeignKey('posts.id', ondelete="CASCADE"), nullable=False)
+    user_id = Column(Integer, ForeignKey('users.id', ondelete="CASCADE"), nullable=False)
+    content = Column(Text, nullable=False)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+
+    post_rel = relationship("Posts", back_populates="comments_rel")
+    user_rel = relationship('User', back_populates="comments_rel")
