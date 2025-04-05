@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/PartyFinder.iml" filepath="$PROJECT_DIR$/.idea/PartyFinder.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/stop_smoke.iml" filepath="$PROJECT_DIR$/.idea/stop_smoke.iml" />
     </modules>
   </component>
 </project>

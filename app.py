@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from pathlib import Path
+from prometheus_fastapi_instrumentator import Instrumentator
 
 from src.api import main_router
 
@@ -10,18 +11,12 @@ from src.api import main_router
 logger = logging.getLogger(__name__)
 
 app = FastAPI(title="Party Finder")
-
-# UPLOAD_DIR = "uploads"
-# AVATAR_DIR = os.path.join(UPLOAD_DIR, "avatars")
-
-# Добавляем middleware
-# app.middleware("http")(error_handler)
+Instrumentator().instrument(app).expose(app)
 
 # Разрешённые источники
 ORIGINS = [
     "http://localhost:5173",  # React (Vite)
     "http://127.0.0.1:5173",  # React на 127.0.0.1
-    # "*",
     "http://localhost:5174"
 ]
 
@@ -35,7 +30,7 @@ app.add_middleware(
 )
 
 
-app.include_router(main_router)
+app.include_router(main_router, prefix="/v1")
 
 # Создаем директории при запуске
 UPLOAD_DIR = Path("uploads")
@@ -56,6 +51,6 @@ async def shutdown_event():
     logger.info("Приложение остановлено")
 
 
-@app.get('/')
+@app.get('/', tags=["Main"])
 async def index():
     return {"message": "Hello World"}

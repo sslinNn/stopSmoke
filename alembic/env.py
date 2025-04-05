@@ -6,7 +6,10 @@ from sqlalchemy.ext.asyncio import create_async_engine
 from alembic import context
 
 # Импорт моделей (убедитесь, что все модели импортированы)
-from src.models.users import Base  # Пример импорта одной модели
+from src.database import Base
+from src.models.users import Base
+from src.models.craving_for_smoking import Base
+from src.models.posts import Base
 
 from config import get_db_url
 db_url = get_db_url()

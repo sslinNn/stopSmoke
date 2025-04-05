@@ -1,8 +1,12 @@
 from fastapi import UploadFile
+from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi import APIRouter, Depends
 from starlette.requests import Request
-from src.schemas.user_schema import SUserProfile, SUserAvatar, RSUserProfile
+
+from src.models.users import User
+from src.schemas.user_schema import SUserProfile, SUserAvatar, RSUserProfile, RSUserUpdateAvatar, RSUserUpdate, \
+    RSUserProfilePublic
 from src.database import get_db
 from src.services.user_service import UserService
 from src.utils.jwt_utils import get_id_from_access_token
@@ -45,14 +49,22 @@ async def get_me(
     return {"success": True, "user_data": current_user_data }
 
 
-@router.patch(
+@router.get("/{user_id}", response_model=RSUserProfilePublic, description="Данные пользователя с ID...")
+async def get_user(user_id: int, db: AsyncSession = Depends(get_db)):
+    stmt = select(User).where(User.id == user_id)
+
+    result = await db.execute(stmt)
+    return {"success": True, "user_data": result.scalars().one_or_none()}
+
+
+@router.put(
     "/update",
-    response_model=SUserProfile,
+    response_model=RSUserUpdate,
     description="Обновление данных пользователя",
 )
 async def update_user(
     request: Request, 
-    user_data: SUserProfile, 
+    user_data: SUserProfile,
     db: AsyncSession = Depends(get_db)
 ):
     token = request.cookies.get("access_token")
@@ -62,9 +74,9 @@ async def update_user(
 
     user_service = UserService(db)
     updated_user = await user_service.update_user(user_id, user_data)
-    return {"success": True, "message": "Пользователь успешно обновлен!" , "user_data": updated_user}
+    return {"success": True, "user_data": updated_user}
 
-@router.post("/update/avatar", response_model=SUserAvatar)
+@router.post("/update/avatar")
 async def upload_avatar(
     request: Request,
     file: UploadFile,
@@ -76,4 +88,4 @@ async def upload_avatar(
 
     user_service = UserService(db)
     updated_user = await user_service.update_user_avatar(user_id, file_service, file)
-    return {'avatar_url': updated_user.avatar_url}
+    return {"success": True, 'avatar_data': updated_user.avatar_url}
